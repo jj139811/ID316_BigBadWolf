@@ -36,7 +36,7 @@ public abstract class Animal extends PlayObject {
         theater.showDescription(s);
         Point sneakPosition = new Point();
         sneakPosition.x = po.getPosition().x - SNEAK_DISTANCE;
-        sneakPosition.y = po.getPosition().y - SNEAK_DISTANCE;
+        sneakPosition.y = po.getPosition().y;
         super.setPosition(sneakPosition);
     }
     
@@ -50,7 +50,7 @@ public abstract class Animal extends PlayObject {
         theater.showDescription(s);
         Point runPosition = new Point();
         runPosition.x = po.getPosition().x - RUN_DISTANCE;
-        runPosition.y = po.getPosition().y - RUN_DISTANCE;
+        runPosition.y = po.getPosition().y;
         super.setPosition(runPosition);
     }
     
@@ -59,7 +59,7 @@ public abstract class Animal extends PlayObject {
         theater.showDescription(s);
         Point openPosition = new Point();
         openPosition.x = po.getPosition().x - OPEN_DISTANCE;
-        openPosition.y = po.getPosition().y - OPEN_DISTANCE;
+        openPosition.y = po.getPosition().y;
         super.setPosition(openPosition);
     }
     
