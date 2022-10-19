@@ -39,35 +39,43 @@ public class BBWTheater extends Thread implements MouseListener{
         
         this.mBBWCanvas.setFocusable(true);
         this.mFrame.setResizable(false);
+        
+        this.mBBWCanvas.repaint();
     }
     private void waitForNextButton() {
         this.mWaitingForNextButton = true;
+        this.mBBWCanvas.repaint();
         while (this.mWaitingForNextButton) {
             Thread.yield();
         }
+        this.mBBWCanvas.clearSpeachBubbles();
     }
     @Override
     public void run() {
         // initiallize
         
         // run scripts
-        System.out.println("1");
+        this.mBBWCanvas.addSpeachBubble("Hello", 100, 100);
         this.waitForNextButton();
         
-        System.out.println("2");
+        this.mBBWCanvas.addSpeachBubble("Hello 2", 100, 200);
         this.waitForNextButton();
         
-        System.out.println("3");
+        this.mBBWCanvas.addSpeachBubble("Hello 3333333333", 100, 300);
         this.waitForNextButton();
         
-        System.out.println("4");
+        this.mBBWCanvas.addSpeachBubble("Hello world!", 100, 400);
         this.waitForNextButton();
     }
     
     public void say(PlayObject speaker, String script) {
         System.out.println (speaker.getName() + " says: " + script);
+        this.mBBWCanvas.addSpeachBubble(script,
+            speaker.getPosition().x,
+            speaker.getPosition().y + 100);
     }
     public void showDescription(String script) {
+        this.mBBWCanvas.setDescription(script);
         System.out.println(script);
     }
     public void changeBgTo(Background background) {

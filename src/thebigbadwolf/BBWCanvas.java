@@ -5,15 +5,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class BBWCanvas extends JPanel {
     // constants
-    private static final Color COLOR_DESCRIPTION = new Color(0, 0, 0);
-    private static final Font FONT_DESCRIPTION =
+    public static final Color COLOR_DESCRIPTION = new Color(0, 0, 0);
+    public static final Font FONT_DESCRIPTION =
         new Font("monospaced", Font.PLAIN, 24);
-    private static final int DESCRIPTION_ALIGNMENT_X = 400;
-    private static final int DESCRIPTION_ALIGNMENT_Y = 300;
+    public static final int DESCRIPTION_ALIGNMENT_X = 400;
+    public static final int DESCRIPTION_ALIGNMENT_Y = 300;
     
     
     // fields
@@ -29,13 +30,17 @@ public class BBWCanvas extends JPanel {
         this.mDescription = description;
     }
     
+    private ArrayList<SpeachBubble> mSpeachBubbles = null;
+    
     //constructor
     public BBWCanvas (BBWTheater theater) {
         this.mTheater = theater;
+        this.mSpeachBubbles = new ArrayList<>();
     }
     
     @Override
     public void paintComponent(Graphics g) {
+        System.out.println("paintComponent called");
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D) g;
@@ -44,6 +49,7 @@ public class BBWCanvas extends JPanel {
         this.drawBackground(g2);
         this.drawPlayObjects(g2);
         this.drawDescription(g2);
+        this.drawSpeachBubbles(g2);
     }
     
     private void drawBackground(Graphics2D g2) {
@@ -64,5 +70,19 @@ public class BBWCanvas extends JPanel {
             g2.drawString(this.mDescription, BBWCanvas.DESCRIPTION_ALIGNMENT_X,
                 BBWCanvas.DESCRIPTION_ALIGNMENT_Y);
         }
+    }
+    private void drawSpeachBubbles(Graphics2D g2) {
+        for (SpeachBubble bubble: this.mSpeachBubbles) {
+            bubble.draw(g2);
+        }
+    }
+    
+    // public methods
+    public void addSpeachBubble(String script, int x, int y) {
+        this.mSpeachBubbles.add(
+            new SpeachBubble(script, x, y));
+    }
+    public void clearSpeachBubbles() {
+        this.mSpeachBubbles.clear();
     }
 }
