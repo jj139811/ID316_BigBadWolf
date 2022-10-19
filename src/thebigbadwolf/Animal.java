@@ -1,7 +1,7 @@
 
 package thebigbadwolf;
 
-public class Animal extends PlayObject {
+public abstract class Animal extends PlayObject {
     //constructor
     protected Animal(String name) {
         super(name);

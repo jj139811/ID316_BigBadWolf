@@ -1,6 +1,6 @@
 package thebigbadwolf;
 
-public class PlayObject {
+public abstract class PlayObject {
     //fields
     protected String mName = null;
     String getName() { 
