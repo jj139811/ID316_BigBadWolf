@@ -14,8 +14,7 @@ public class BBWCanvas extends JPanel {
     public static final Font FONT_DESCRIPTION =
         new Font("monospaced", Font.PLAIN, 24);
     public static final int DESCRIPTION_ALIGNMENT_X = 400;
-    public static final int DESCRIPTION_ALIGNMENT_Y = 300;
-    
+    public static final int DESCRIPTION_ALIGNMENT_Y = 500;
     
     // fields
     private BBWTheater mTheater = null;
@@ -67,7 +66,10 @@ public class BBWCanvas extends JPanel {
         if (this.mDescription != null) {
             g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
             g2.setFont(BBWCanvas.FONT_DESCRIPTION);
-            g2.drawString(this.mDescription, BBWCanvas.DESCRIPTION_ALIGNMENT_X,
+            g2.drawString(this.mDescription,
+                BBWCanvas.DESCRIPTION_ALIGNMENT_X
+                    - this.mDescription.length() *
+                        BBWCanvas.FONT_DESCRIPTION.getSize() / 2,
                 BBWCanvas.DESCRIPTION_ALIGNMENT_Y);
         }
     }

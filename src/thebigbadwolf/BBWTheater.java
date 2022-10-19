@@ -1,14 +1,24 @@
 package thebigbadwolf;
 
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class BBWTheater extends Thread implements MouseListener{
     //constants
     private static final int SCREEN_WIDTH = 800;
     private static final int SCREEN_HEIGHT = 600;
+    
+    // test static field
+    private static Image defaultImage = null;
+    private static int instanceCount = 0;
+    
     //fields
     private JFrame mFrame = null;
     private BBWCanvas mBBWCanvas = null;
@@ -21,6 +31,10 @@ public class BBWTheater extends Thread implements MouseListener{
     }
     
     public BBWTheater () {
+        if (instanceCount >= 1) {
+            return;
+        }
+        instanceCount += 1;
         //initiallize
         this.mFrame = new JFrame("Big Bad Wolf");
         this.mFrame.setSize(BBWTheater.SCREEN_WIDTH, BBWTheater.SCREEN_HEIGHT);
@@ -41,6 +55,14 @@ public class BBWTheater extends Thread implements MouseListener{
         this.mFrame.setResizable(false);
         
         this.mBBWCanvas.repaint();
+        
+        // Test code
+        try {
+            this.defaultImage = ImageIO.read(
+                new File("src/thebigbadwolf/resources/sample.png"));
+        } catch (IOException e) {
+            System.out.println("Image read failed: " + e.getMessage());
+        }
     }
     private void waitForNextButton() {
         this.mWaitingForNextButton = true;
@@ -53,18 +75,23 @@ public class BBWTheater extends Thread implements MouseListener{
     @Override
     public void run() {
         // initiallize
+        Pig samplePig = new Pig("Willson");
+        samplePig.setImage(defaultImage);
+        samplePig.setPosition(new Point(100, 200));
+        this.addToScene(samplePig);
         
         // run scripts
-        this.mBBWCanvas.addSpeachBubble("Hello", 100, 100);
+        this.say(samplePig, "Hello!");
+        this.showDescription("Wilson is a pig");
         this.waitForNextButton();
         
-        this.mBBWCanvas.addSpeachBubble("Hello 2", 100, 200);
+        this.say(samplePig, "I'm Wilson!");
+        
+        this.showDescription("And this is a test script");
         this.waitForNextButton();
         
-        this.mBBWCanvas.addSpeachBubble("Hello 3333333333", 100, 300);
-        this.waitForNextButton();
-        
-        this.mBBWCanvas.addSpeachBubble("Hello world!", 100, 400);
+        this.say(samplePig, "I'm a test pig!");
+        this.showDescription("good!");
         this.waitForNextButton();
     }
     
@@ -72,7 +99,7 @@ public class BBWTheater extends Thread implements MouseListener{
         System.out.println (speaker.getName() + " says: " + script);
         this.mBBWCanvas.addSpeachBubble(script,
             speaker.getPosition().x,
-            speaker.getPosition().y + 100);
+            speaker.getPosition().y - 100);
     }
     public void showDescription(String script) {
         this.mBBWCanvas.setDescription(script);

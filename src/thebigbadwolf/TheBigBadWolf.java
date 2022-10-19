@@ -9,7 +9,4 @@ public class TheBigBadWolf {
     public static void main(String[] args) {
         new TheBigBadWolf();
     }
-    public void something (String str) {
-        System.out.println("Hello " + str);
-    } 
 }
