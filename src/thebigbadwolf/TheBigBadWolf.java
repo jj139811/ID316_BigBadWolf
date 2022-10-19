@@ -4,8 +4,12 @@ public class TheBigBadWolf {
     private BBWTheater mTheater = null;
     public TheBigBadWolf() {
         this.mTheater = new BBWTheater();
+        this.mTheater.start();
     }
     public static void main(String[] args) {
         new TheBigBadWolf();
     }
+    public void something (String str) {
+        System.out.println("Hello " + str);
+    } 
 }
