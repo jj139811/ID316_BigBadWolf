@@ -1,9 +1,11 @@
 package thebigbadwolf;
 
 public class TheBigBadWolf {
-
-    public static void main(String[] args) {
-    
+    private BBWTheater mTheater = null;
+    public TheBigBadWolf() {
+        this.mTheater = new BBWTheater();
     }
-    
+    public static void main(String[] args) {
+        new TheBigBadWolf();
+    }
 }
