@@ -11,7 +11,7 @@ public abstract class Animal extends PlayObject {
     }
     
     public void walkTo(PlayObject po) {
-        String s = this.mName + " walk to " + po.getName() + ".";
+        String s = this.getName() + " walk to " + po.getName() + ".";
         System.out.println(s);
         
         
@@ -23,9 +23,9 @@ public abstract class Animal extends PlayObject {
     }
     
     public void sneak(PlayObject po) {
-        String s = this.mName + " sneaks to " + po.getName() + ".";
+        String s = this.getName() + " sneaks to " + po.getName() + ".";
         theater.showDescription(s);
-        super.setPosition(po.mPosition);
+        super.setPosition(po.getPosition());
     }
     
     public void runaway() {
