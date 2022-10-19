@@ -5,4 +5,9 @@ public abstract class Protagonist extends Animal{
     protected Protagonist(String name) {
         super(name);
     }
+    
+    //method
+    public abstract void ceremony();
+    
+    
 }

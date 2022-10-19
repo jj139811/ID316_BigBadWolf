@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.awt.Point;
 
 public abstract class PlayObject {
-    //fields
+    //field
     private String mName = null;
     public String getName() { 
         return this.mName;
