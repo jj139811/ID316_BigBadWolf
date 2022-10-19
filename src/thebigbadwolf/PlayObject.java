@@ -1,10 +1,34 @@
 package thebigbadwolf;
 
+import java.awt.Image;
+import java.awt.Point;
+
 public abstract class PlayObject {
     //fields
-    protected String mName = null;
-    String getName() { 
+    private String mName = null;
+    public String getName() { 
         return this.mName;
+    }
+    
+    private Place mCurPlace = null;
+    public Place getCurPlace() {
+        return this.mCurPlace;
+    }
+    
+    private Point mPosition = null;
+    public Point getPosition() {
+        return this.mPosition;      
+    }
+    public void setPosition(Point targetPosition) {
+        this.mPosition = targetPosition;
+    }
+    
+    private Image mImage = null;
+    public Image getImage() {
+        return this.mImage;
+    }
+    public void setImage(Image imageToChange) {
+        this.mImage = imageToChange;
     }
     
     //protected constructor 
@@ -12,14 +36,5 @@ public abstract class PlayObject {
         this.mName = name;
     }  
     
-    
-    public void runAwayTo(PlayObject po) {
-    String s = null;
-    if (po == null) {
-        s = this.mName + " runaway";
-    } else {
-        s = this.mName + " runaway to " + po.getName() + ".";
-    }
-    System.out.println(s);
-    }
+
 }

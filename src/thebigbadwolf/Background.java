@@ -1,5 +1,5 @@
 package thebigbadwolf;
 
-public class Background {
+public class Background extends Place {
     
 }
