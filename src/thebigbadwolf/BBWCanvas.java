@@ -13,7 +13,7 @@ public class BBWCanvas extends JPanel {
     public static final Color COLOR_DESCRIPTION = new Color(0, 0, 0);
     public static final Font FONT_DESCRIPTION =
         new Font("monospaced", Font.PLAIN, 24);
-    public static final int DESCRIPTION_ALIGNMENT_X = 400;
+    public static final int DESCRIPTION_ALIGNMENT_X = 200;
     public static final int DESCRIPTION_ALIGNMENT_Y = 500;
     
     // fields
@@ -24,9 +24,12 @@ public class BBWCanvas extends JPanel {
         this.mBackground = bg;
     }
     
-    private String mDescription = null;
+    private ArrayList<String> mDescriptions = null;
     public void setDescription(String description) {
-        this.mDescription = description;
+        this.mDescriptions.add(description);
+    }
+    public void clearDescription() {
+        this.mDescriptions.clear();
     }
     
     private ArrayList<SpeachBubble> mSpeachBubbles = null;
@@ -35,6 +38,7 @@ public class BBWCanvas extends JPanel {
     public BBWCanvas (BBWTheater theater) {
         this.mTheater = theater;
         this.mSpeachBubbles = new ArrayList<>();
+        this.mDescriptions = new ArrayList<>();
     }
     
     @Override
@@ -65,14 +69,16 @@ public class BBWCanvas extends JPanel {
         }
     }
     private void drawDescription(Graphics2D g2) {
-        if (this.mDescription != null) {
-            g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
-            g2.setFont(BBWCanvas.FONT_DESCRIPTION);
-            g2.drawString(this.mDescription,
-                BBWCanvas.DESCRIPTION_ALIGNMENT_X
-                    - this.mDescription.length() *
-                        BBWCanvas.FONT_DESCRIPTION.getSize() / 2,
-                BBWCanvas.DESCRIPTION_ALIGNMENT_Y);
+        for (int i = 0; i < this.mDescriptions.size(); i++) {
+            String description = this.mDescriptions.get(i);
+            if (description != null) {
+                g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
+                g2.setFont(BBWCanvas.FONT_DESCRIPTION);
+                g2.drawString(description,
+                    BBWCanvas.DESCRIPTION_ALIGNMENT_X,
+                    BBWCanvas.DESCRIPTION_ALIGNMENT_Y + 
+                        BBWCanvas.FONT_DESCRIPTION.getSize() * i);
+            }
         }
     }
     private void drawSpeachBubbles(Graphics2D g2) {
