@@ -59,7 +59,8 @@ public class BBWCanvas extends JPanel {
     private void drawPlayObjects(Graphics2D g2) {
         for (PlayObject po: this.mTheater.getPlayObjectsInCurScene()) {
             g2.drawImage(po.getImage(),
-                po.getPosition().x, po.getPosition().y, null);
+                po.getPosition().x, po.getPosition().y,
+                po.getWidth(), po.getHeight(), null);
         }
     }
     private void drawDescription(Graphics2D g2) {

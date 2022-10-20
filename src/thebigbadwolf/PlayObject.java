@@ -26,6 +26,19 @@ public abstract class PlayObject {
         this.mPosition = targetPosition;
     }
     
+    private int mImageWidth = 0;
+    private int mImageHeight = 0;
+    public int getWidth() {
+        return this.mImageWidth;
+    }
+    public int getHeight() {
+        return this.mImageHeight;
+    }
+    public void setSize(int width, int height) {
+        this.mImageWidth = width;
+        this.mImageHeight = height;
+    }
+    
     protected Image mImage = null;
     public Image getImage() {
         return this.mImage;
@@ -44,8 +57,9 @@ public abstract class PlayObject {
         this.mName = name;
         this.mDefaultImage = this.callImage();
         this.setImage(this.mDefaultImage);
-        
-    }  
+        this.mImageWidth = this.mDefaultImage.getWidth(null);
+        this.mImageHeight = this.mDefaultImage.getHeight(null);
+    }
     
     protected abstract Image callImage();
     
