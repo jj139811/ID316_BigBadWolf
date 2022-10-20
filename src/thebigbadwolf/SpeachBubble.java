@@ -57,18 +57,29 @@ public class SpeachBubble extends BBWUI{
         int width = mMidBubbleImage.getWidth(null);
         int height = mMidBubbleImage.getHeight(null) / 2;
         int offsetX = -width * this.mScript.length() / 2;
+        int bubbleOffsetX = 0;
+        if (this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX < 0) {
+            bubbleOffsetX = -this.mPosition.x +
+                mLeftBubbleImage.getWidth(null) - offsetX;
+        }
+        if (this.mPosition.x + width * this.mScript.length() + offsetX > 
+            800) {
+            bubbleOffsetX = -this.mPosition.x -
+                width * this.mScript.length() - offsetX + 800;
+        }
         g2.drawImage(mLeftBubbleImage,
-            this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX,
+            this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX + 
+                bubbleOffsetX,
             this.mPosition.y - height, null);
         
         int i = 0;
         for (; i < this.mScript.length() + 1; i++) {
             g2.drawImage(mMidBubbleImage,
-                this.mPosition.x + width * i + offsetX,
+                this.mPosition.x + width * i + offsetX + bubbleOffsetX,
                 this.mPosition.y - height, null);
         }
         g2.drawImage(mRightBubbleImage,
-                this.mPosition.x + width * i + offsetX,
+                this.mPosition.x + width * i + offsetX + bubbleOffsetX,
                 this.mPosition.y - height, null);
         
         g2.drawImage(mBubblePointer,
@@ -76,7 +87,7 @@ public class SpeachBubble extends BBWUI{
         
         g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
         g2.setFont(BBWCanvas.FONT_DESCRIPTION);
-        g2.drawString(this.mScript, this.mPosition.x + offsetX,
+        g2.drawString(this.mScript, this.mPosition.x + offsetX + bubbleOffsetX,
             this.mPosition.y + BBWCanvas.FONT_DESCRIPTION.getSize() / 2);
     }
 }
