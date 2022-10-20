@@ -3,11 +3,14 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 public class Place extends PlayObject {
     //constants
-    private static final int DISTANCE_BETWEEN_MEMBERS = 20;
+    private static final int DISTANCE_BETWEEN_MEMBERS = 50;
     private static final int DISTANCE_BELOW_PLACE = 30;
     //field
     ArrayList<PlayObject> mMembers = new ArrayList<PlayObject>();
@@ -43,7 +46,19 @@ public class Place extends PlayObject {
 
     @Override
     protected Image callImage() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String fileName = null;
+        switch (this.getName()) {
+            case "closet":
+                fileName = "closet";
+                break;
+            case "bed":
+                fileName = "bed";
+                break;
+            case "tree":
+                fileName = "tree";
+                break;
+        }
+        return this.loadImage(fileName);
     }
      
 }

@@ -95,8 +95,15 @@ public class BBWTheater extends Thread implements MouseListener{
         Place tree = new Place("tree");
         Place bed = new Place("bed");
         
-        firstPig.setPosition(new Point(100, 200));
+        frontyard.setPosition(new Point(100, 400));
+        
         this.addToScene(firstPig);
+        this.addToScene(secondPig);
+        this.addToScene(thirdPig);
+        this.addToScene(redRidingHood);
+        this.changeBgTo(frontyard);
+       
+        
         
         // run scripts
         this.say(firstPig, "Hello!");

@@ -59,6 +59,7 @@ public abstract class PlayObject {
         this.setImage(this.mDefaultImage);
         this.mImageWidth = this.mDefaultImage.getWidth(null) / 2;
         this.mImageHeight = this.mDefaultImage.getHeight(null) / 2;
+        this.setPosition(new Point(0, 0));
     }
     
     protected abstract Image callImage();
@@ -67,9 +68,14 @@ public abstract class PlayObject {
         try {
             return ImageIO.read(
                 new File("src/thebigbadwolf/resources/" + fileName + ".png"));
-        }   catch (IOException e) { 
-            System.out.println(e.getMessage());
-            return null;
+        }   catch (IOException e) {
+            try {
+                return ImageIO.read(
+                    new File("src/thebigbadwolf/resources/sample.png"));
+            }   catch (IOException e2) { 
+                System.out.println(e.getMessage());
+                return null;
+            }
         }
     }
 }
