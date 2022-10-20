@@ -2,6 +2,9 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Wolf extends Animal{
     //constant
@@ -11,13 +14,14 @@ public class Wolf extends Animal{
     public static final int CHASE_DISTANCE = 70;
     public static final int ATTACK_DISTANCE = 50;
     
-    public static final Image WOLF_DEFAULT = null;
-    public static final Image WOLF_FAIRY = null;
-    public static final Image WOLF_GRANDMA = null;
+    public static Image WOLF_FAIRY = null;
+    public static Image WOLF_GRANDMA = null;
     
     //constructor
     protected Wolf(String name) {
         super(name);
+        WOLF_FAIRY = this.loadImage("wolf_fairy");
+        WOLF_GRANDMA = this.loadImage("wolf_grandma");
     }
     
     //method
@@ -33,7 +37,7 @@ public class Wolf extends Animal{
     public void reveal() {
         String s = this.getName() + "'s disguise reveals.";
         theater.showDescription(s);
-        this.setImage(WOLF_DEFAULT);
+        this.setImage(this.getImage());
     }
     
     public void snuggle(PlayObject po) {
@@ -95,5 +99,11 @@ public class Wolf extends Animal{
         divePosition.x = po.getPosition().x;
         divePosition.y = po.getPosition().y;
         super.setPosition(divePosition);
+    }
+
+    @Override
+    protected Image callImage() {
+        String fileName = "wolf_default";
+        return this.loadImage(fileName);
     }
 }

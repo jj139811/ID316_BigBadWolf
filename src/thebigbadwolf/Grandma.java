@@ -29,6 +29,17 @@ public class Grandma extends Human {
         Image imageToChange = null;
         this.setImage(imageToChange);
     }
+
+    @Override
+    protected Image callImage() {
+        return this.loadImage("grandma_default");
+    }
+
+    @Override
+    protected Image loadCeremonyImage() {
+        return this.loadImage("grandma_knitting");
+        
+    }
     
     
     

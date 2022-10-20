@@ -1,6 +1,7 @@
 
 package thebigbadwolf;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 public class Place extends PlayObject {
@@ -23,6 +24,11 @@ public class Place extends PlayObject {
     
     public void remove(PlayObject po) {
         this.mMembers.remove(po);
+    }
+
+    @Override
+    protected Image callImage() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
      
 }

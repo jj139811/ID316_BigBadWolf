@@ -2,6 +2,9 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public abstract class PlayObject {
     //field
@@ -23,7 +26,7 @@ public abstract class PlayObject {
         this.mPosition = targetPosition;
     }
     
-    private Image mImage = null;
+    protected Image mImage = null;
     public Image getImage() {
         return this.mImage;
     }
@@ -34,7 +37,19 @@ public abstract class PlayObject {
     //protected constructor 
     protected PlayObject(String name) {
         this.mName = name;
+        this.mImage = this.callImage();
+        
     }  
     
-
+    protected abstract Image callImage();
+    
+    protected Image loadImage(String fileName) {
+        try {
+            return ImageIO.read(
+                new File("src/thebigbadwolf/resources/" + fileName + ".png"));
+        }   catch (IOException e) { 
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
