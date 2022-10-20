@@ -79,22 +79,36 @@ public class BBWTheater extends Thread implements MouseListener{
     @Override
     public void run() {
         // initiallize
-        Pig samplePig = new Pig("Willson");
-        samplePig.setImage(defaultImage);
-        samplePig.setPosition(new Point(100, 200));
-        this.addToScene(samplePig);
+        Pig firstPig = new Pig("adam");
+        Pig secondPig = new Pig("brian");
+        Pig thirdPig = new Pig("chris");
+        Grandma grandma = new Grandma("grandma");
+        RedRidingHood redRidingHood = new RedRidingHood("red riding hood");
+        Wolf wolf = new Wolf("wilson");
+        BrickHouse brickHouse = new BrickHouse("brickhouse");
+        Popcorn popcorn = new Popcorn("popcorn");
+        Forest forest = new Forest("forest");
+        Frontyard frontyard = new Frontyard("frontyard");
+        GrandmaHouse grandmaHouse = new GrandmaHouse("grandma's house");
+        Cloth wolfPants = new Cloth("wolf's pants");
+        Place closet = new Place("closet");
+        Place tree = new Place("tree");
+        Place bed = new Place("bed");
+        
+        firstPig.setPosition(new Point(100, 200));
+        this.addToScene(firstPig);
         
         // run scripts
-        this.say(samplePig, "Hello!");
+        this.say(firstPig, "Hello!");
         this.showDescription("Wilson is a pig");
         this.waitForNextButton();
         
-        this.say(samplePig, "I'm Wilson!");
+        this.say(firstPig, "I'm Wilson!");
         
         this.showDescription("And this is a test script");
         this.waitForNextButton();
         
-        this.say(samplePig, "I'm a test pig!");
+        this.say(firstPig, "I'm a test pig!");
         this.showDescription("good!");
         this.waitForNextButton();
     }
