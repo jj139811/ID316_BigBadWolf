@@ -34,10 +34,16 @@ public abstract class PlayObject {
         this.mImage = imageToChange;
     }
     
+    protected Image mDefaultImage = null;
+    public Image getDefaultImage() {
+        return this.mDefaultImage;
+    }
+    
     //protected constructor 
     protected PlayObject(String name) {
         this.mName = name;
-        this.mImage = this.callImage();
+        this.mDefaultImage = this.callImage();
+        this.setImage(this.mDefaultImage);
         
     }  
     
