@@ -1,8 +1,13 @@
 package thebigbadwolf;
 
-public class Cloth extends PlayObject {
+public class Cloth {
+    //field
+    private String mName = null;
+    public String getName() {
+        return this.mName;
+    }
     //constructor
     public Cloth(String name) {
-        super(name);
+        this.mName = name;
     }
 }

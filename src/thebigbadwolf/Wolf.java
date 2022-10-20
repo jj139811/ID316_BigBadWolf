@@ -37,7 +37,7 @@ public class Wolf extends Animal{
     public void reveal() {
         String s = this.getName() + "'s disguise reveals.";
         theater.showDescription(s);
-        this.setImage(this.getImage());
+        this.setImage(this.mDefaultImage);
     }
     
     public void snuggle(PlayObject po) {
