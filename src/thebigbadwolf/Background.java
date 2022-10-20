@@ -1,9 +1,8 @@
 package thebigbadwolf;
 
 import java.awt.Image;
-import java.io.IOException;
 
-public class Background extends Place {
+public abstract class Background extends Place {
     //field
     BBWTheater theater = BBWTheater.getInstance();
     private Image mBackgroundImage = null;
@@ -14,10 +13,11 @@ public class Background extends Place {
     //constructor
     protected Background(String name) {
         super(name);
-        
-        String fileName = "bg/bg_" + name;
-        this.mBackgroundImage = this.loadImage(fileName);
+        this.mBackgroundImage = this.loadBackgroundImage();
     }
+    
+    // abstract method
+    protected abstract Image loadBackgroundImage();
     
     //method
     public void changeBackgroundTo(Background changedBg) {
