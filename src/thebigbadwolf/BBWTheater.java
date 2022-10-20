@@ -124,7 +124,7 @@ public class BBWTheater extends Thread implements MouseListener{
         System.out.println(script);
     }
     public void changeBgTo(Background background) {
-        this.mBBWCanvas.setBackground(background.getImage());
+        this.mBBWCanvas.setBackground(background.getBackgroundImage());
         System.out.println("Background changed to " + background.getName());
     }
     public void addToScene(PlayObject po) {

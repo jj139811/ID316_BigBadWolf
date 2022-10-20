@@ -7,6 +7,9 @@ public class Background extends Place {
     //field
     BBWTheater theater = BBWTheater.getInstance();
     private Image mBackgroundImage = null;
+    public Image getBackgroundImage() {
+        return this.mBackgroundImage;
+    }
     
     //constructor
     protected Background(String name) {
