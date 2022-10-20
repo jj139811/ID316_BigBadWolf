@@ -10,11 +10,12 @@ public abstract class Animal extends PlayObject {
     public static final int OPEN_DISTANCE = -20;
     
     //fields
-    BBWTheater theater = new BBWTheater();
+    BBWTheater theater = null;
     
     //constructor
     protected Animal(String name) {
         super(name);
+        this.theater = BBWTheater.getInstance();
     }
     
     //method
