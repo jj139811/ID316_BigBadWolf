@@ -10,4 +10,5 @@ public class Cloth {
     public Cloth(String name) {
         this.mName = name;
     }
+    
 }

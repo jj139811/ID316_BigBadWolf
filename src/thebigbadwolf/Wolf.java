@@ -56,7 +56,7 @@ public class Wolf extends Animal{
     }
     
     public void wear(Cloth c) {
-        String s = this.getName() + " wears " + c.getName() + " clothes.";
+        String s = this.getName() + " wears " + c.getName() + "'s clothes.";
         BBWTheater.getInstance().showDescription(s);
         //change image with cloth 
         String clothName = c.getName();

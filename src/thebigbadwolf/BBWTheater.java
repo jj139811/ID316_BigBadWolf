@@ -32,7 +32,7 @@ public class BBWTheater extends Thread implements MouseListener{
     private BBWCanvas mBBWCanvas = null;
     
     //skip to Nth page 
-    private int mSkipCount = -30;
+    private int mSkipCount = 0;
     
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
@@ -76,6 +76,7 @@ public class BBWTheater extends Thread implements MouseListener{
             Thread.yield();
         }
         this.mBBWCanvas.clearSpeachBubbles();
+        this.clearDescription();
     }
     @Override
     public void run() {
@@ -140,10 +141,10 @@ public class BBWTheater extends Thread implements MouseListener{
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
-        this.addToScene(wolf);
         this.addToScene(redRidingHood);
         this.addToScene(tree);
         this.changeBgTo(forest);
+        this.addToScene(wolf);
         redRidingHood.walkTo(forest);
         this.waitForNextButton();
         wolf.sneak(redRidingHood);
@@ -173,10 +174,10 @@ public class BBWTheater extends Thread implements MouseListener{
 
         System.out.println("====grandma’s house ");
         this.clearScene();
-        this.addToScene(wolf);
         this.addToScene(closet);
         this.addToScene(grandma);
         this.addToScene(bed);
+        this.addToScene(wolf);
         this.changeBgTo(grandmaHouse);
         closet.setPosition(new Point(100, 400));
         bed.setPosition(new Point(600, 500));
@@ -220,6 +221,10 @@ public class BBWTheater extends Thread implements MouseListener{
         firstPig.walkTo(brickHouse);
         secondPig.walkTo(brickHouse);
         this.waitForNextButton();
+        firstPig.say("the wolf! he’s got her!");
+        this.waitForNextButton();
+        thirdPig.put(wolf, new Cloth("bag"));
+        this.waitForNextButton();
 
         
         
@@ -252,6 +257,9 @@ public class BBWTheater extends Thread implements MouseListener{
     public void showDescription(String script) {
         this.mBBWCanvas.setDescription(script);
         System.out.println(script);
+    }
+    public void clearDescription() {
+        this.mBBWCanvas.clearDescription();
     }
     public void changeBgTo(Background background) {
         this.mBBWCanvas.setBackground(background.getBackgroundImage());

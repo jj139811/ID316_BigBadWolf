@@ -18,7 +18,7 @@ public class Pig extends Protagonist {
         String s = this.getName();
         switch (this.getName()) {
             case "adam":
-                s = s + " plays his fluit.";
+                s = s + " plays his flute.";
                 break;
             case "brian":
                 s = s + " plays his fiddle.";
