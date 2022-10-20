@@ -1,5 +1,7 @@
 package thebigbadwolf;
 
+import java.awt.Image;
+
 public class Grandma extends Human {
     //constructor
     protected Grandma(String name) {
@@ -24,6 +26,8 @@ public class Grandma extends Human {
         String s = this.getName() + " knits.";
         System.out.println(s);
         //change image with knitting grandma.
+        Image imageToChange = null;
+        this.setImage(imageToChange);
     }
     
     

@@ -1,5 +1,7 @@
 package thebigbadwolf;
 
+import java.awt.Image;
+
 public class RedRidingHood extends Human {
     
     //constructor
@@ -10,6 +12,9 @@ public class RedRidingHood extends Human {
     //method
     @Override
     public void ceremony() {
-        
+        String s = this.getName() + "plays piano.";
+        System.out.println(s);
+        Image imageToChange = null;
+        this.setImage(imageToChange);
     }
 }
