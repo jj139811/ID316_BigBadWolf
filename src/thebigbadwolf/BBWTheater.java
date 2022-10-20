@@ -31,7 +31,8 @@ public class BBWTheater extends Thread implements MouseListener{
     private JFrame mFrame = null;
     private BBWCanvas mBBWCanvas = null;
     
-    private boolean mWaitingForNextButton = true;
+    //skip to Nth page 
+    private int mSkipCount = -30;
     
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
@@ -69,9 +70,9 @@ public class BBWTheater extends Thread implements MouseListener{
         }
     }
     private void waitForNextButton() {
-        this.mWaitingForNextButton = true;
+        this.mSkipCount += 1;
         this.mBBWCanvas.repaint();
-        while (this.mWaitingForNextButton) {
+        while (this.mSkipCount > 0) {
             Thread.yield();
         }
         this.mBBWCanvas.clearSpeachBubbles();
@@ -96,21 +97,135 @@ public class BBWTheater extends Thread implements MouseListener{
         Place bed = new Place("bed");
         
         frontyard.setPosition(new Point(100, 400));
+        forest.setPosition(new Point(100, 400));
+        grandmaHouse.setPosition(new Point(100, 400));
+        brickHouse.setPosition(new Point(100, 400));
         
+        System.out.println("====in front of pig3's brickhouse");
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
         this.addToScene(redRidingHood);
         this.changeBgTo(frontyard);
         
-        System.out.println("====in front of pig3's brickhouse");
-        
         redRidingHood.walkTo(thirdPig);
-        firstPig.loadCeremonyImage();
-        secondPig.loadCeremonyImage();
+        this.waitForNextButton();
         firstPig.ceremony();
+        this.waitForNextButton();
         secondPig.ceremony();
-       
+        this.waitForNextButton();
+        thirdPig.buildHouse();
+        this.waitForNextButton();
+        firstPig.say("good morning, little red riding hood.");
+        this.waitForNextButton();
+        redRidingHood.say("good morning, how do you do?");
+        this.waitForNextButton();
+        thirdPig.say("good morning, miss riding hood.");
+        this.waitForNextButton();
+        firstPig.say("where are you going, red riding hood?");
+        this.waitForNextButton();
+        redRidingHood.say("i'm bringing grandma cakes and wines.");
+        this.waitForNextButton();
+        firstPig.say("you get there quick, red riding hood, ");
+        this.waitForNextButton();
+        firstPig.say("if you take the shortcut through the wood.");
+        this.waitForNextButton();
+        thirdPig.say("beware, the big bad wolf is lurking there.");
+        this.waitForNextButton();
+        secondPig.say("we’ll go with you and protect you.");
+        this.waitForNextButton();
+        
+        System.out.println("====in the forest");
+        this.clearScene();
+        this.addToScene(firstPig);
+        this.addToScene(secondPig);
+        this.addToScene(thirdPig);
+        this.addToScene(wolf);
+        this.addToScene(redRidingHood);
+        this.addToScene(tree);
+        this.changeBgTo(forest);
+        redRidingHood.walkTo(forest);
+        this.waitForNextButton();
+        wolf.sneak(redRidingHood);
+        this.waitForNextButton();
+        wolf.climb(tree);
+        tree.add(wolf);
+        this.waitForNextButton();
+        wolf.wear(new Cloth("fairy"));
+        this.waitForNextButton();
+        wolf.say("i’m the fairy queen.");
+        this.waitForNextButton();
+        wolf.reveal();
+        this.waitForNextButton();
+        firstPig.runaway();
+        secondPig.runaway();
+        redRidingHood.runaway();
+        this.waitForNextButton();
+        wolf.chase(redRidingHood);
+        this.waitForNextButton();
+        wolf.snuggle(tree);
+        this.waitForNextButton();
+        wolf.say("Curses!");
+        this.waitForNextButton();
+        firstPig.runaway();
+        secondPig.runaway();
+        this.waitForNextButton();
+
+        System.out.println("====grandma’s house ");
+        this.clearScene();
+        this.addToScene(wolf);
+        this.addToScene(closet);
+        this.addToScene(grandma);
+        this.addToScene(bed);
+        this.changeBgTo(grandmaHouse);
+        closet.setPosition(new Point(100, 400));
+        bed.setPosition(new Point(600, 500));
+        
+        wolf.sneak(grandmaHouse);
+        this.waitForNextButton();
+        grandma.say("come in.");
+        this.waitForNextButton();
+        wolf.attack(grandma);
+        this.waitForNextButton();
+        grandma.runaway();
+        closet.add(grandma);
+        this.waitForNextButton();
+        wolf.open(closet);
+        this.waitForNextButton();
+        this.addToScene(redRidingHood);
+        redRidingHood.walkTo(grandmaHouse);
+        this.waitForNextButton();
+        wolf.wear(new Cloth("grandma"));
+        this.waitForNextButton();
+        wolf.dive(bed);
+        this.waitForNextButton();
+        
+        redRidingHood.say("good morning grandma, how do you feel today?");
+        this.waitForNextButton();
+        redRidingHood.walkTo(wolf);
+        this.waitForNextButton();
+        wolf.say("terrible!");
+        this.waitForNextButton();
+        wolf.chase(redRidingHood);
+        this.waitForNextButton();
+        redRidingHood.runaway();
+        this.waitForNextButton();
+        
+        System.out.println("====brickhouse ");
+        this.clearScene();
+        this.addToScene(firstPig);
+        this.addToScene(secondPig);
+        this.addToScene(thirdPig);
+        this.changeBgTo(brickHouse);
+        firstPig.walkTo(brickHouse);
+        secondPig.walkTo(brickHouse);
+        this.waitForNextButton();
+
+        
+        
+        
+        
+        
         
         
         // run scripts
@@ -147,16 +262,24 @@ public class BBWTheater extends Thread implements MouseListener{
         }
         System.out.println("Background changed to " + background.getName());
     }
+    
+    public void clearSpeechBubble() {
+        this.mBBWCanvas.clearSpeachBubbles();
+    }
+    
     public void addToScene(PlayObject po) {
         this.mPlayObjectsInCurScene.add(po);
     }
     public void removeFromScene(PlayObject po) {
         this.mPlayObjectsInCurScene.remove(po);
     }
+    public void clearScene() {
+        this.mPlayObjectsInCurScene.clear();
+    }
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.mWaitingForNextButton = false;
+        this.mSkipCount -= 1;
     }
 
     @Override

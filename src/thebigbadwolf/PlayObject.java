@@ -57,8 +57,8 @@ public abstract class PlayObject {
         this.mName = name;
         this.mDefaultImage = this.callImage();
         this.setImage(this.mDefaultImage);
-        this.mImageWidth = this.mDefaultImage.getWidth(null) / 2;
-        this.mImageHeight = this.mDefaultImage.getHeight(null) / 2;
+        this.mImageWidth = this.mDefaultImage.getWidth(null) / 3;
+        this.mImageHeight = this.mDefaultImage.getHeight(null) / 3;
         this.setPosition(new Point(0, 0));
     }
     
