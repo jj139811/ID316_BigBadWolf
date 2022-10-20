@@ -11,13 +11,21 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class BBWTheater extends Thread implements MouseListener{
+    // Singleton
+    private static BBWTheater instance = null;
+    public static BBWTheater getInstance () {
+        if (instance == null) {
+            instance = new BBWTheater();
+        }
+        return instance;
+    }
+    
     //constants
     private static final int SCREEN_WIDTH = 800;
     private static final int SCREEN_HEIGHT = 600;
     
     // test static field
     private static Image defaultImage = null;
-    private static int instanceCount = 0;
     
     //fields
     private JFrame mFrame = null;
@@ -31,10 +39,6 @@ public class BBWTheater extends Thread implements MouseListener{
     }
     
     public BBWTheater () {
-        if (instanceCount >= 1) {
-            return;
-        }
-        instanceCount += 1;
         //initiallize
         this.mFrame = new JFrame("Big Bad Wolf");
         this.mFrame.setSize(BBWTheater.SCREEN_WIDTH, BBWTheater.SCREEN_HEIGHT);

@@ -2,7 +2,7 @@ package thebigbadwolf;
 
 public class Background extends Place {
     //field
-    BBWTheater theater = new BBWTheater();
+    BBWTheater theater = BBWTheater.getInstance();
     
     //constructor
     protected Background(String name) {
