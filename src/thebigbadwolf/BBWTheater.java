@@ -102,6 +102,14 @@ public class BBWTheater extends Thread implements MouseListener{
         this.addToScene(thirdPig);
         this.addToScene(redRidingHood);
         this.changeBgTo(frontyard);
+        
+        System.out.println("====in front of pig3's brickhouse");
+        
+        redRidingHood.walkTo(thirdPig);
+        firstPig.loadCeremonyImage();
+        secondPig.loadCeremonyImage();
+        firstPig.ceremony();
+        secondPig.ceremony();
        
         
         
