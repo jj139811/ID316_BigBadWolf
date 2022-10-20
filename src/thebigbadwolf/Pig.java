@@ -14,27 +14,40 @@ public class Pig extends Protagonist {
     
     //method
     @Override
-    //???????????????????????????
     public void ceremony() {
-        Image imageToChange = null;
-        this.setImage(imageToChange);
+        String s = this.getName();
+        switch (this.getName()) {
+            case "adam":
+                s = s + " plays his fluit.";
+                break;
+            case "brian":
+                s = s + " plays his fiddle.";
+                break;
+            case "chris":
+                s = s + " makes piano work.";
+                break;
+        }
+        BBWTheater.getInstance().showDescription(s);
+        this.setImage(this.mCeremonyImage);
     }
     
     public void buildHouse() {
-       String s = this.getName() + " builds brickhouse.";
-       System.out.println(s);
-       Image imageToChange = null;
-       this.setImage(imageToChange);
+        // TODO: load building image
+        this.setImage(this.mDefaultImage);
+        
+        String s = this.getName() + " builds brickhouse.";
+        BBWTheater.getInstance().showDescription(s);
     }
     
     public void sing() {
        String s = this.getName() + " sings.";
-       System.out.println(s);
+       BBWTheater.getInstance().showDescription(s);
     }
     
     public void put(PlayObject what, PlayObject where) {
        String s = this.getName() + " puts " + what.getName() + "into" + where.getName() + " .";
-       System.out.println(s);
+       BBWTheater.getInstance().showDescription(s);
+       
        Point targetPosition = new Point();
        targetPosition.x = where.getPosition().x;
        targetPosition.y = where.getPosition().y - 10;

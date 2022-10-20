@@ -2,10 +2,6 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 public class Wolf extends Animal{
     //constant
     public static final int CLIMB_DISTANCE = 200;
@@ -27,7 +23,7 @@ public class Wolf extends Animal{
     //method
     public void climb(PlayObject po) {
         String s = this.getName() + " climbs the " + po.getName() + ".";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point climbPosition = new Point();
         climbPosition.x = po.getPosition().x;
         climbPosition.y = po.getPosition().y - CLIMB_DISTANCE;
@@ -36,13 +32,13 @@ public class Wolf extends Animal{
     
     public void reveal() {
         String s = this.getName() + "'s disguise reveals.";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         this.setImage(this.mDefaultImage);
     }
     
     public void snuggle(PlayObject po) {
         String s = this.getName() + " snuggles among the " + po.getName() + ".";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point snugglePosition = new Point();
         snugglePosition.setLocation(super.getPosition());
         snugglePosition.x = po.getPosition().x;
@@ -52,7 +48,7 @@ public class Wolf extends Animal{
     
     public void jumpOut() {
         String s = this.getName() + " jumps out.";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point jumpOutPosition = new Point();
         jumpOutPosition.x -= 0;
         jumpOutPosition.y -= JUMPOUT_DISTANCE;
@@ -60,8 +56,8 @@ public class Wolf extends Animal{
     }
     
     public void wear(Cloth c) {
-        String s = this.getName() + " wears " + c.getName() + ".";
-        theater.showDescription(s);
+        String s = this.getName() + " wears " + c.getName() + " clothes.";
+        BBWTheater.getInstance().showDescription(s);
         //change image with cloth 
         String clothName = c.getName();
         switch (clothName) {
@@ -76,7 +72,7 @@ public class Wolf extends Animal{
     
     public void chase(PlayObject po) {
         String s = this.getName() + " chases " + po.getName() + ".";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point chasePosition = new Point();
         chasePosition.x = po.getPosition().x + CHASE_DISTANCE;
         chasePosition.y = po.getPosition().y;
@@ -85,7 +81,7 @@ public class Wolf extends Animal{
     
     public void attack(PlayObject po) {
         String s = this.getName() + " attacks " + po.getName() + ".";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point attackPosition = new Point();
         attackPosition.x = po.getPosition().x - ATTACK_DISTANCE;
         attackPosition.y = po.getPosition().y;
@@ -94,7 +90,7 @@ public class Wolf extends Animal{
     
     public void dive(PlayObject po) {
         String s = this.getName() + " dives into " + po.getName() + ".";
-        theater.showDescription(s);
+        BBWTheater.getInstance().showDescription(s);
         Point divePosition = new Point();
         divePosition.x = po.getPosition().x;
         divePosition.y = po.getPosition().y;

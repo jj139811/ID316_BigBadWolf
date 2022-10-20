@@ -16,7 +16,7 @@ public class RedRidingHood extends Human {
     @Override
     public void ceremony() {
         String s = this.getName() + "plays piano.";
-        System.out.println(s);
+        BBWTheater.getInstance().showDescription(s);
         Image imageToChange = null;
         this.setImage(imageToChange);
     }

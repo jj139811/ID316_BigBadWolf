@@ -13,7 +13,7 @@ public class Popcorn extends PlayObject {
     //method
     public void explode() {
         String s = this.getName() + " explodes.";
-        System.out.println(s);
+        BBWTheater.getInstance().showDescription(s);
         Image imageToChange = this.explodedPopcorn;
         this.setImage(imageToChange);
     }

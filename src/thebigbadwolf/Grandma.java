@@ -10,24 +10,27 @@ public class Grandma extends Human {
     
     //method
     public void hide(PlayObject po, Place where) {
-        String hidingSubject = new String();
+        String hidingSubject;
         if (po.getName().equals(this.getName())) {
             hidingSubject = "herself";
         } else {
             hidingSubject = po.getName();
         }
-        String s = this.getName() + " hides " + hidingSubject + " to " + where;
-        System.out.println(s);
+        
         //change po position to place position.
+        where.add(po);
+        
+        String s = this.getName() + " hides " + hidingSubject + " to " + where;
+        BBWTheater.getInstance().showDescription(s);
     }
 
     @Override
     public void ceremony() {
         String s = this.getName() + " knits.";
-        System.out.println(s);
+        BBWTheater.getInstance().showDescription(s);
+        
         //change image with knitting grandma.
-        Image imageToChange = null;
-        this.setImage(imageToChange);
+        this.setImage(this.mCeremonyImage);
     }
 
     @Override
