@@ -32,7 +32,7 @@ public class BBWTheater extends Thread implements MouseListener{
     private BBWCanvas mBBWCanvas = null;
     
     //skip to Nth page 
-    private int mSkipCount = -10;
+    private int mSkipCount = 1;
     
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
