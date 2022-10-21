@@ -7,6 +7,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Pig extends Protagonist {
+    //field
+    public static final Point houseBuildingPoint = new Point(600,300);
+    
     //constructor
     protected Pig(String name) {
         super(name);
@@ -33,10 +36,11 @@ public class Pig extends Protagonist {
     
     public void buildHouse() {
         // TODO: load building image
-        this.setImage(this.mDefaultImage);
+        this.setImage(this.loadImage("pig3_buildhouse"));
         
         String s = this.getName() + " builds brickhouse.";
         BBWTheater.getInstance().showDescription(s);
+        this.setPosition(houseBuildingPoint);
     }
     
     public void sing() {
@@ -44,14 +48,10 @@ public class Pig extends Protagonist {
        BBWTheater.getInstance().showDescription(s);
     }
     
-    public void put(PlayObject what, PlayObject where) {
-       String s = this.getName() + " puts " + what.getName() + "into" + where.getName() + " .";
+    public void put(String what, String where) {
+       String s = this.getName() + " puts " + what + " into " + where + ".";
        BBWTheater.getInstance().showDescription(s);
-       
-       Point targetPosition = new Point();
-       targetPosition.x = where.getPosition().x;
-       targetPosition.y = where.getPosition().y - 10;
-       what.setPosition(targetPosition);
+      
     }
 
     @Override

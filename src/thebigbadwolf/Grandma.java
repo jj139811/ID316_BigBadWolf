@@ -20,7 +20,7 @@ public class Grandma extends Human {
         //change po position to place position.
         where.add(po);
         
-        String s = this.getName() + " hides " + hidingSubject + " to " + where;
+        String s = this.getName() + " hides " + hidingSubject + " to " + where.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }
 

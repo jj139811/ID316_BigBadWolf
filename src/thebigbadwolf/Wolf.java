@@ -49,7 +49,7 @@ public class Wolf extends Animal{
     public void jumpOut() {
         String s = this.getName() + " jumps out.";
         BBWTheater.getInstance().showDescription(s);
-        Point jumpOutPosition = new Point();
+        Point jumpOutPosition = new Point(this.getPosition().x, this.getPosition().y);
         jumpOutPosition.x -= 0;
         jumpOutPosition.y -= JUMPOUT_DISTANCE;
         super.setPosition(jumpOutPosition);

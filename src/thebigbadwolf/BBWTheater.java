@@ -32,7 +32,7 @@ public class BBWTheater extends Thread implements MouseListener{
     private BBWCanvas mBBWCanvas = null;
     
     //skip to Nth page 
-    private int mSkipCount = 0;
+    private int mSkipCount = -10;
     
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
@@ -93,6 +93,7 @@ public class BBWTheater extends Thread implements MouseListener{
         Frontyard frontyard = new Frontyard("frontyard");
         GrandmaHouse grandmaHouse = new GrandmaHouse("grandma's house");
         Cloth wolfPants = new Cloth("wolf's pants");
+        Cloth bag = new Cloth("bag");
         Place closet = new Place("closet");
         Place tree = new Place("tree");
         Place bed = new Place("bed");
@@ -140,7 +141,6 @@ public class BBWTheater extends Thread implements MouseListener{
         this.clearScene();
         this.addToScene(firstPig);
         this.addToScene(secondPig);
-        this.addToScene(thirdPig);
         this.addToScene(redRidingHood);
         this.addToScene(tree);
         this.changeBgTo(forest);
@@ -218,34 +218,77 @@ public class BBWTheater extends Thread implements MouseListener{
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
         this.changeBgTo(brickHouse);
-        firstPig.walkTo(brickHouse);
-        secondPig.walkTo(brickHouse);
+        firstPig.setPosition(new Point(100, 400));
+        secondPig.setPosition(new Point(100, 460));
+        thirdPig.setPosition(new Point(500, 400));
+        firstPig.run(brickHouse);
+        secondPig.run(brickHouse);
         this.waitForNextButton();
         firstPig.say("the wolf! he’s got her!");
         this.waitForNextButton();
-        thirdPig.put(wolf, new Cloth("bag"));
+        thirdPig.put("popcorn", "bag");
+        this.waitForNextButton();
+        thirdPig.run(grandmaHouse);
+        this.waitForNextButton();
+        
+        System.out.println("====grandma's house");
+        this.clearScene();
+        this.addToScene(closet);
+        this.addToScene(bed);
+        this.changeBgTo(grandmaHouse);
+        this.addToScene(wolf);
+        this.addToScene(redRidingHood);
+        this.addToScene(grandma);
+        
+        closet.setPosition(new Point(100, 400));
+        bed.setPosition(new Point(600, 500));
+        closet.add(grandma);
+        wolf.chase(redRidingHood);
+        redRidingHood.runaway();
+        this.waitForNextButton();
+        grandma.hide(redRidingHood, closet);
+        this.waitForNextButton();
+        wolf.open(closet);
+        this.waitForNextButton();
+        wolf.say("open the door and let me in!");
+        this.waitForNextButton();
+        this.addToScene(thirdPig);
+        thirdPig.sneak(grandmaHouse);
+        this.waitForNextButton();
+        thirdPig.put("unpopped popcorns", "wolf's pants");
+        thirdPig.put("charcoal", "wolf's pants");
+        this.waitForNextButton();
+        wolf.jumpOut();
+        this.waitForNextButton();
+        popcorn.explode();
+        wolf.runaway();
+        this.waitForNextButton();
+        
+        System.out.println("====grandma's house");
+        this.clearScene();
+        this.addToScene(redRidingHood);
+        this.addToScene(firstPig);
+        this.addToScene(secondPig);
+        this.addToScene(thirdPig);
+        this.addToScene(grandma);
+        this.changeBgTo(brickHouse);
+        
+        firstPig.ceremony();
+        this.waitForNextButton();
+        secondPig.ceremony();
+        this.waitForNextButton();
+        thirdPig.ceremony();
+        this.waitForNextButton();
+        grandma.ceremony();
+        this.waitForNextButton();
+        redRidingHood.ceremony();
+        this.waitForNextButton();
+        
+        firstPig.say("who’s afraid of that big bad wolf? ");
+        secondPig.say("who’s afraid of that big bad wolf? ");
         this.waitForNextButton();
 
-        
-        
-        
-        
-        
-        
-        
-        // run scripts
-        this.say(firstPig, "Hello!");
-        this.showDescription("Wilson is a pig");
-        this.waitForNextButton();
-        
-        this.say(firstPig, "I'm Wilson!");
-        
-        this.showDescription("And this is a test script");
-        this.waitForNextButton();
-        
-        this.say(firstPig, "I'm a test pig!");
-        this.showDescription("good!");
-        this.waitForNextButton();
+        System.out.println("====the end");
     }
     
     public void say(PlayObject speaker, String script) {

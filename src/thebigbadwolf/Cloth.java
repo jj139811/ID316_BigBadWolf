@@ -11,4 +11,5 @@ public class Cloth {
         this.mName = name;
     }
     
+    
 }

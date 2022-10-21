@@ -6,8 +6,10 @@ import java.awt.Point;
 public abstract class Animal extends PlayObject {
     //constant
     public static final int SNEAK_DISTANCE = 100;
-    public static final int RUN_DISTANCE = 500;
+    public static final int RUN_DISTANCE = 200;
     public static final int OPEN_DISTANCE = -20;
+    public static final int RUNAWAY_DISTANCE = 300;
+    public static final int WALK_TO_DISTANCE = 50;
     
     //constructor
     protected Animal(String name) {
@@ -16,10 +18,10 @@ public abstract class Animal extends PlayObject {
     
     //method
     public void walkTo(PlayObject po) {
-        Point sneakPosition = new Point();
-        sneakPosition.x = po.getPosition().x;
-        sneakPosition.y = po.getPosition().y;
-        super.setPosition(sneakPosition);
+        Point walkToPosition = new Point();
+        walkToPosition.x = po.getPosition().x + WALK_TO_DISTANCE;
+        walkToPosition.y = po.getPosition().y;
+        super.setPosition(walkToPosition);
         
         String s = this.getName() + " walks to " + po.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
@@ -36,7 +38,6 @@ public abstract class Animal extends PlayObject {
         sneakPosition.x = po.getPosition().x - SNEAK_DISTANCE;
         sneakPosition.y = po.getPosition().y;
         super.setPosition(sneakPosition);
-        
         String s = this.getName() + " sneaks to " + po.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }
@@ -44,11 +45,15 @@ public abstract class Animal extends PlayObject {
     public void runaway() {
         String s = this.getName() + " runs away.";
         BBWTheater.getInstance().showDescription(s);
+        Point runawayPosition = new Point();
+        runawayPosition.x = this.getPosition().x + RUNAWAY_DISTANCE;
+        runawayPosition.y = this.getPosition().y;
+        super.setPosition(runawayPosition);
     }
     
     public void run(PlayObject po) {
         Point runPosition = new Point();
-        runPosition.x = po.getPosition().x - RUN_DISTANCE;
+        runPosition.x = po.getPosition().x + RUN_DISTANCE;
         runPosition.y = po.getPosition().y;
         super.setPosition(runPosition);
         
