@@ -7,6 +7,8 @@ public class Forest extends Background {
     public Forest(String name) {
         super(name);
     }
+    
+    //method
     @Override
     protected Image loadBackgroundImage() {
         return this.loadImage("bg/bg_forest");

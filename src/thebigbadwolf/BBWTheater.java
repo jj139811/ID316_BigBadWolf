@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class BBWTheater extends Thread implements MouseListener{
+public class BBWTheater extends Thread implements MouseListener {
     // Singleton
     private static BBWTheater instance = null;
-    public static BBWTheater getInstance () {
+    public static BBWTheater getInstance() {
         if (instance == null) {
             instance = new BBWTheater();
         }
@@ -24,22 +24,17 @@ public class BBWTheater extends Thread implements MouseListener{
     private static final int SCREEN_WIDTH = 800;
     private static final int SCREEN_HEIGHT = 600;
     
-    // test static field
-    private static Image defaultImage = null;
-    
     //fields
     private JFrame mFrame = null;
     private BBWCanvas mBBWCanvas = null;
-    
     //skip to Nth page 
-    private int mSkipCount = 1;
-    
+    private int mSkipCount = 0;
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
         return this.mPlayObjectsInCurScene;
     }
     
-    public BBWTheater () {
+    public BBWTheater() {
         //initiallize
         this.mFrame = new JFrame("Big Bad Wolf");
         this.mFrame.setSize(BBWTheater.SCREEN_WIDTH, BBWTheater.SCREEN_HEIGHT);
@@ -61,14 +56,8 @@ public class BBWTheater extends Thread implements MouseListener{
         
         this.mBBWCanvas.repaint();
         
-        // Test code
-        try {
-            this.defaultImage = ImageIO.read(
-                new File("src/thebigbadwolf/resources/sample.png"));
-        } catch (IOException e) {
-            System.out.println("Image read failed: " + e.getMessage());
-        }
     }
+    
     private void waitForNextButton() {
         this.mSkipCount += 1;
         this.mBBWCanvas.repaint();
@@ -78,6 +67,7 @@ public class BBWTheater extends Thread implements MouseListener{
         this.mBBWCanvas.clearSpeachBubbles();
         this.clearDescription();
     }
+    
     @Override
     public void run() {
         // initiallize
@@ -103,6 +93,7 @@ public class BBWTheater extends Thread implements MouseListener{
         grandmaHouse.setPosition(new Point(100, 400));
         brickHouse.setPosition(new Point(100, 400));
         
+        //scene 1
         System.out.println("====in front of pig3's brickhouse");
         this.addToScene(firstPig);
         this.addToScene(secondPig);
@@ -137,14 +128,22 @@ public class BBWTheater extends Thread implements MouseListener{
         secondPig.say("we’ll go with you and protect you.");
         this.waitForNextButton();
         
+        //scene 2
         System.out.println("====in the forest");
         this.clearScene();
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(redRidingHood);
         this.addToScene(tree);
-        this.changeBgTo(forest);
         this.addToScene(wolf);
+        this.changeBgTo(forest);
+        wolf.setPosition(new Point(600, 400));
+        tree.setPosition(new Point(500, 350));
+        firstPig.setPosition(new Point(300, 400));
+        secondPig.setPosition(new Point(400, 400));
+        redRidingHood.setPosition(new Point(500, 400));
+        this.waitForNextButton();
+        
         redRidingHood.walkTo(forest);
         this.waitForNextButton();
         wolf.sneak(redRidingHood);
@@ -172,6 +171,7 @@ public class BBWTheater extends Thread implements MouseListener{
         secondPig.runaway();
         this.waitForNextButton();
 
+        //scene 3
         System.out.println("====grandma’s house ");
         this.clearScene();
         this.addToScene(closet);
@@ -179,7 +179,7 @@ public class BBWTheater extends Thread implements MouseListener{
         this.addToScene(bed);
         this.addToScene(wolf);
         this.changeBgTo(grandmaHouse);
-        closet.setPosition(new Point(100, 400));
+        closet.setPosition(new Point(200, 400));
         bed.setPosition(new Point(600, 500));
         
         wolf.sneak(grandmaHouse);
@@ -200,7 +200,6 @@ public class BBWTheater extends Thread implements MouseListener{
         this.waitForNextButton();
         wolf.dive(bed);
         this.waitForNextButton();
-        
         redRidingHood.say("good morning grandma, how do you feel today?");
         this.waitForNextButton();
         redRidingHood.walkTo(wolf);
@@ -212,17 +211,21 @@ public class BBWTheater extends Thread implements MouseListener{
         redRidingHood.runaway();
         this.waitForNextButton();
         
+        //scene 4
         System.out.println("====brickhouse ");
         this.clearScene();
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
         this.changeBgTo(brickHouse);
-        firstPig.setPosition(new Point(100, 400));
-        secondPig.setPosition(new Point(100, 460));
-        thirdPig.setPosition(new Point(500, 400));
+        thirdPig.setPosition(new Point(600, 400));
+        this.waitForNextButton();
+        brickHouse.remove(thirdPig);
+        
         firstPig.run(brickHouse);
+        brickHouse.add(firstPig);
         secondPig.run(brickHouse);
+        brickHouse.add(secondPig);
         this.waitForNextButton();
         firstPig.say("the wolf! he’s got her!");
         this.waitForNextButton();
@@ -235,15 +238,17 @@ public class BBWTheater extends Thread implements MouseListener{
         this.clearScene();
         this.addToScene(closet);
         this.addToScene(bed);
-        this.changeBgTo(grandmaHouse);
         this.addToScene(wolf);
         this.addToScene(redRidingHood);
         this.addToScene(grandma);
-        
+        this.changeBgTo(grandmaHouse);
         closet.setPosition(new Point(100, 400));
-        bed.setPosition(new Point(600, 500));
         closet.add(grandma);
+        bed.setPosition(new Point(600, 500));
+        redRidingHood.setPosition(new Point(300, 500));
+        
         wolf.chase(redRidingHood);
+        this.waitForNextButton();
         redRidingHood.runaway();
         this.waitForNextButton();
         grandma.hide(redRidingHood, closet);
@@ -264,26 +269,32 @@ public class BBWTheater extends Thread implements MouseListener{
         wolf.runaway();
         this.waitForNextButton();
         
-        System.out.println("====grandma's house");
+        //scene 5
+        System.out.println("====brick house");
+        brickHouse.setPosition(new Point(100, 400));
         this.clearScene();
         this.addToScene(redRidingHood);
+        this.addToScene(grandma);
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
-        this.addToScene(grandma);
         this.changeBgTo(brickHouse);
+        redRidingHood.setPosition(new Point(100, 450));
+        thirdPig.setPosition(new Point(200, 450));
+        secondPig.setPosition(new Point(400, 450));
+        firstPig.setPosition(new Point(500, 450));
+        grandma.setPosition(new Point(600, 400));
         
+        redRidingHood.ceremony();
+        this.waitForNextButton();
+        thirdPig.ceremony();
+        this.waitForNextButton();
         firstPig.ceremony();
         this.waitForNextButton();
         secondPig.ceremony();
         this.waitForNextButton();
-        thirdPig.ceremony();
-        this.waitForNextButton();
         grandma.ceremony();
         this.waitForNextButton();
-        redRidingHood.ceremony();
-        this.waitForNextButton();
-        
         firstPig.say("who’s afraid of that big bad wolf? ");
         secondPig.say("who’s afraid of that big bad wolf? ");
         this.waitForNextButton();
@@ -297,6 +308,7 @@ public class BBWTheater extends Thread implements MouseListener{
             speaker.getPosition().x,
             speaker.getPosition().y - 100);
     }
+    
     public void showDescription(String script) {
         this.mBBWCanvas.setDescription(script);
         System.out.println(script);
@@ -304,6 +316,7 @@ public class BBWTheater extends Thread implements MouseListener{
     public void clearDescription() {
         this.mBBWCanvas.clearDescription();
     }
+    
     public void changeBgTo(Background background) {
         this.mBBWCanvas.setBackground(background.getBackgroundImage());
         for (PlayObject po: this.mPlayObjectsInCurScene) {

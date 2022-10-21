@@ -2,7 +2,6 @@ package thebigbadwolf;
 
 import java.awt.Point;
 
-
 public abstract class Animal extends PlayObject {
     //constant
     public static final int SNEAK_DISTANCE = 100;
@@ -22,7 +21,6 @@ public abstract class Animal extends PlayObject {
         walkToPosition.x = po.getPosition().x + WALK_TO_DISTANCE;
         walkToPosition.y = po.getPosition().y;
         super.setPosition(walkToPosition);
-        
         String s = this.getName() + " walks to " + po.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }
@@ -66,7 +64,6 @@ public abstract class Animal extends PlayObject {
         openPosition.x = po.getPosition().x - OPEN_DISTANCE;
         openPosition.y = po.getPosition().y;
         super.setPosition(openPosition);
-        
         String s = this.getName() + " opens " + po.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }

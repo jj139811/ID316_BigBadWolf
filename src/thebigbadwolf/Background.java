@@ -5,6 +5,7 @@ import java.awt.Image;
 public abstract class Background extends Place {
     //field
     BBWTheater theater = BBWTheater.getInstance();
+    
     private Image mBackgroundImage = null;
     public Image getBackgroundImage() {
         return this.mBackgroundImage;
@@ -16,10 +17,9 @@ public abstract class Background extends Place {
         this.mBackgroundImage = this.loadBackgroundImage();
     }
     
-    // abstract method
+    //method
     protected abstract Image loadBackgroundImage();
     
-    //method
     public void changeBackgroundTo(Background changedBg) {
         theater.changeBgTo(changedBg);
     }

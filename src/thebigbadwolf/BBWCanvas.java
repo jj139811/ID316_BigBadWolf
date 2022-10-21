@@ -16,7 +16,7 @@ public class BBWCanvas extends JPanel {
     public static final int DESCRIPTION_ALIGNMENT_X = 200;
     public static final int DESCRIPTION_ALIGNMENT_Y = 500;
     
-    // fields
+    // field
     private BBWTheater mTheater = null;
     
     private Image mBackground = null;
@@ -35,19 +35,18 @@ public class BBWCanvas extends JPanel {
     private ArrayList<SpeachBubble> mSpeachBubbles = null;
     
     //constructor
-    public BBWCanvas (BBWTheater theater) {
+    public BBWCanvas(BBWTheater theater) {
         this.mTheater = theater;
         this.mSpeachBubbles = new ArrayList<>();
         this.mDescriptions = new ArrayList<>();
     }
     
+    //method
     @Override
     public void paintComponent(Graphics g) {
         System.out.println("paintComponent called");
         super.paintComponent(g);
-        
         Graphics2D g2 = (Graphics2D) g;
-        
         // draw
         this.drawBackground(g2);
         this.drawPlayObjects(g2);
@@ -61,7 +60,7 @@ public class BBWCanvas extends JPanel {
         }
     }
     private void drawPlayObjects(Graphics2D g2) {
-        for (PlayObject po: this.mTheater.getPlayObjectsInCurScene()) {
+        for (PlayObject po : this.mTheater.getPlayObjectsInCurScene()) {
             g2.drawImage(po.getImage(),
                 po.getPosition().x - po.getWidth() / 2,
                 po.getPosition().y - po.getHeight() / 2,
@@ -82,12 +81,12 @@ public class BBWCanvas extends JPanel {
         }
     }
     private void drawSpeachBubbles(Graphics2D g2) {
-        for (SpeachBubble bubble: this.mSpeachBubbles) {
+        for (SpeachBubble bubble : this.mSpeachBubbles) {
             bubble.draw(g2);
         }
     }
     
-    // public methods
+    // public method
     public void addSpeachBubble(String script, int x, int y) {
         this.mSpeachBubbles.add(
             new SpeachBubble(script, x, y));

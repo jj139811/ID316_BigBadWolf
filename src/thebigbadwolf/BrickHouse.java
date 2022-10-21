@@ -7,6 +7,8 @@ public class BrickHouse extends House {
     public BrickHouse(String name) {
         super(name);
     }
+    
+    //method
     @Override
     protected Image loadBackgroundImage() {
         return this.loadImage("bg/bg_brick_house");

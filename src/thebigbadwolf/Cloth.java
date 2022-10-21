@@ -6,10 +6,9 @@ public class Cloth {
     public String getName() {
         return this.mName;
     }
+    
     //constructor
     public Cloth(String name) {
         this.mName = name;
-    }
-    
-    
+    }   
 }

@@ -52,7 +52,7 @@ public abstract class PlayObject {
         return this.mDefaultImage;
     }
     
-    //protected constructor 
+    //constructor 
     protected PlayObject(String name) {
         this.mName = name;
         this.mDefaultImage = this.callImage();
@@ -63,7 +63,6 @@ public abstract class PlayObject {
     }
     
     protected abstract Image callImage();
-    
     protected Image loadImage(String fileName) {
         try {
             return ImageIO.read(

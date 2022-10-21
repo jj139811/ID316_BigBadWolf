@@ -2,7 +2,8 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
-public class Wolf extends Animal{
+
+public class Wolf extends Animal {
     //constant
     public static final int CLIMB_DISTANCE = 200;
     public static final int SNUGGLE_DISTANCE = 100;
@@ -49,7 +50,8 @@ public class Wolf extends Animal{
     public void jumpOut() {
         String s = this.getName() + " jumps out.";
         BBWTheater.getInstance().showDescription(s);
-        Point jumpOutPosition = new Point(this.getPosition().x, this.getPosition().y);
+        Point jumpOutPosition = new Point(this.getPosition().x, 
+            this.getPosition().y);
         jumpOutPosition.x -= 0;
         jumpOutPosition.y -= JUMPOUT_DISTANCE;
         super.setPosition(jumpOutPosition);
@@ -57,8 +59,7 @@ public class Wolf extends Animal{
     
     public void wear(Cloth c) {
         String s = this.getName() + " wears " + c.getName() + "'s clothes.";
-        BBWTheater.getInstance().showDescription(s);
-        //change image with cloth 
+        BBWTheater.getInstance().showDescription(s); 
         String clothName = c.getName();
         switch (clothName) {
             case "fairy": 

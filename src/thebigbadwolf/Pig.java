@@ -35,9 +35,7 @@ public class Pig extends Protagonist {
     }
     
     public void buildHouse() {
-        // TODO: load building image
         this.setImage(this.loadImage("pig3_buildhouse"));
-        
         String s = this.getName() + " builds brickhouse.";
         BBWTheater.getInstance().showDescription(s);
         this.setPosition(houseBuildingPoint);
@@ -75,7 +73,6 @@ public class Pig extends Protagonist {
             System.out.println(e.getMessage());
             return null;
         }
-        
     }
 
     @Override
@@ -94,5 +91,4 @@ public class Pig extends Protagonist {
         } 
         return this.loadImage(fileName);
     }
-    
 }

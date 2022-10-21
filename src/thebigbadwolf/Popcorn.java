@@ -3,7 +3,9 @@ package thebigbadwolf;
 import java.awt.Image;
 
 public class Popcorn extends PlayObject {
+    //field
     private Image explodedPopcorn = null;
+    
     //constructor
     public Popcorn(String name) {
         super(name);

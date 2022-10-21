@@ -7,6 +7,8 @@ public class Frontyard extends Background {
     public Frontyard(String name) {
         super(name);
     }
+    
+    //method
     @Override
     protected Image loadBackgroundImage() {
         return this.loadImage("bg/bg_frontyard");

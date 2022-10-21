@@ -7,6 +7,7 @@ public class GrandmaHouse extends House {
     public GrandmaHouse(String name) {
         super(name);
     }
+    //method
     @Override
     protected Image loadBackgroundImage() {
         return this.loadImage("bg/bg_grandma_house");

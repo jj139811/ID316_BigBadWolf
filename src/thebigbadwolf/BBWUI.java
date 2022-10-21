@@ -10,11 +10,11 @@ public abstract class BBWUI {
         this.mPosition = new Point(x, y);
     }
     
-    // protected constructors
+    //constructor
     protected BBWUI(int x, int y) {
         this.mPosition = new Point(x, y);
     }
     
-    // abstract methods
+    //method
     public abstract void draw(Graphics2D g2);
 }

@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class RedRidingHood extends Human {
-    
     //constructor
     protected RedRidingHood(String name) {
         super(name);
@@ -25,7 +24,6 @@ public class RedRidingHood extends Human {
         String fileName = "redridinghood_default";
         return this.loadImage(fileName);
     }
-
     @Override
     protected Image loadCeremonyImage() {
         String fileName = "redridinghood_piano";
