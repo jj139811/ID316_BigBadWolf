@@ -16,6 +16,8 @@ public class BBWCanvas extends JPanel {
     public static final int DESCRIPTION_ALIGNMENT_X = 200;
     public static final int DESCRIPTION_ALIGNMENT_Y = 500;
     
+    public static final int MAX_CHAR_IN_LINE = 30;
+    
     // field
     private BBWTheater mTheater = null;
     
@@ -26,7 +28,15 @@ public class BBWCanvas extends JPanel {
     
     private ArrayList<String> mDescriptions = null;
     public void setDescription(String description) {
-        this.mDescriptions.add(description);
+        StringBuffer descriptionRemained = new StringBuffer(description);
+        while (descriptionRemained.length() > BBWCanvas.MAX_CHAR_IN_LINE) {
+            this.mDescriptions.add(
+                descriptionRemained.substring(0, BBWCanvas.MAX_CHAR_IN_LINE));
+            descriptionRemained = new StringBuffer(
+                descriptionRemained.substring(
+                    BBWCanvas.MAX_CHAR_IN_LINE, descriptionRemained.length()));
+        }
+        this.mDescriptions.add(descriptionRemained.toString());
     }
     public void clearDescription() {
         this.mDescriptions.clear();
