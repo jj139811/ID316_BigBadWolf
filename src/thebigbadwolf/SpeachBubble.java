@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class SpeachBubble extends BBWUI{
+    // constant
+    private static final int SCRIPT_OFFSET_Y = -4;
     // static fields
     private static Image mLeftBubbleImage = null;
     private static Image mMidBubbleImage = null;
@@ -96,7 +98,8 @@ public class SpeachBubble extends BBWUI{
         g2.setFont(BBWCanvas.FONT_DESCRIPTION);
         g2.drawString(this.mScript,
             this.getAnchorX() + mLeftBubbleImage.getWidth(null),
-            this.mPosition.y + BBWCanvas.FONT_DESCRIPTION.getSize() / 2);
+            this.mPosition.y +
+            BBWCanvas.FONT_DESCRIPTION.getSize() / 2 + SCRIPT_OFFSET_Y);
     }
     
     public Rectangle getRectangle() {
