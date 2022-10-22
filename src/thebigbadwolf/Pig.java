@@ -48,7 +48,8 @@ public class Pig extends Protagonist {
     
     public void put(PlayObject what, PlayObject where) {
         where.putSomethingIn(what);
-        String s = this.getName() + " puts " + what + " into " + where + ".";
+        String s = this.getName() + " puts " + what.getName() + " into " +
+            where.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }
 
