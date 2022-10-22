@@ -59,7 +59,6 @@ public class BBWCanvas extends JPanel {
     //method
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println("paintComponent called");
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         // draw
@@ -83,7 +82,7 @@ public class BBWCanvas extends JPanel {
         }
     }
     private void drawDescription(Graphics2D g2) {
-        if (this.mDescriptions.size() > 0) {
+        if (!this.mDescriptions.isEmpty()) {
             this.mDescriptionPanel.draw(g2);
             for (int i = 0; i < this.mDescriptions.size(); i++) {
                 String description = this.mDescriptions.get(i);

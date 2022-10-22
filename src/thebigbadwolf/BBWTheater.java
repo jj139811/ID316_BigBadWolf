@@ -233,8 +233,6 @@ public class BBWTheater extends Thread implements MouseListener {
         //scene 4
         System.out.println("====brickhouse ");
         this.clearScene();
-        this.addToScene(firstPig);
-        this.addToScene(secondPig);
         this.addToScene(thirdPig);
         this.addToScene(bag);
         this.addToScene(popcorn);
@@ -244,8 +242,10 @@ public class BBWTheater extends Thread implements MouseListener {
         brickHouse.remove(thirdPig);
         
         firstPig.run(brickHouse);
+        this.addToScene(firstPig);
         brickHouse.add(firstPig);
         secondPig.run(brickHouse);
+        this.addToScene(secondPig);
         brickHouse.add(secondPig);
         this.waitForNextButton();
         firstPig.say("the wolf! he's got her!");
