@@ -158,7 +158,7 @@ public class BBWTheater extends Thread implements MouseListener {
         this.waitForNextButton();
         wolf.wear(new Cloth("fairy"));
         this.waitForNextButton();
-        wolf.say("i’m the fairy queen.");
+        wolf.say("i'm the fairy queen.");
         this.waitForNextButton();
         wolf.reveal();
         this.waitForNextButton();
@@ -177,7 +177,7 @@ public class BBWTheater extends Thread implements MouseListener {
         this.waitForNextButton();
 
         //scene 3
-        System.out.println("====grandma’s house ");
+        System.out.println("====grandma's house ");
         this.clearScene();
         this.addToScene(closet);
         this.addToScene(grandma);
@@ -234,7 +234,7 @@ public class BBWTheater extends Thread implements MouseListener {
         secondPig.run(brickHouse);
         brickHouse.add(secondPig);
         this.waitForNextButton();
-        firstPig.say("the wolf! he’s got her!");
+        firstPig.say("the wolf! he's got her!");
         this.waitForNextButton();
         thirdPig.put(popcorn, bag);
         thirdPig.putSomethingIn(bag);
@@ -304,15 +304,14 @@ public class BBWTheater extends Thread implements MouseListener {
         this.waitForNextButton();
         grandma.ceremony();
         this.waitForNextButton();
-        firstPig.say("who’s afraid of that big bad wolf? ");
-        secondPig.say("who’s afraid of that big bad wolf? ");
+        firstPig.say("who's afraid of that big bad wolf? ");
+        secondPig.say("who's afraid of that big bad wolf? ");
         this.waitForNextButton();
 
         System.out.println("====the end");
     }
     
     public void say(PlayObject speaker, String script) {
-        System.out.println (speaker.getName() + " says: " + script);
         this.mBBWCanvas.addSpeachBubble(script,
             speaker.getPosition().x,
             speaker.getPosition().y - 100);
