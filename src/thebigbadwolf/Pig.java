@@ -46,10 +46,10 @@ public class Pig extends Protagonist {
        BBWTheater.getInstance().showDescription(s);
     }
     
-    public void put(String what, String where) {
-       String s = this.getName() + " puts " + what + " into " + where + ".";
-       BBWTheater.getInstance().showDescription(s);
-      
+    public void put(PlayObject what, PlayObject where) {
+        where.putSomethingIn(what);
+        String s = this.getName() + " puts " + what + " into " + where + ".";
+        BBWTheater.getInstance().showDescription(s);
     }
 
     @Override

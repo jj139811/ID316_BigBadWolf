@@ -24,6 +24,9 @@ public abstract class PlayObject {
     }
     public void setPosition(Point targetPosition) {
         this.mPosition = targetPosition;
+        if (this.mSomehting != null) {
+            this.mSomehting.setPosition(targetPosition);
+        }
     }
     
     private int mImageWidth = 0;
@@ -46,10 +49,19 @@ public abstract class PlayObject {
     public void setImage(Image imageToChange) {
         this.mImage = imageToChange;
     }
+    public void setToDefaultImage() {
+        this.setImage(this.mDefaultImage);
+    }
     
     protected Image mDefaultImage = null;
     public Image getDefaultImage() {
         return this.mDefaultImage;
+    }
+    
+    private PlayObject mSomehting = null;
+    public void putSomethingIn(PlayObject something) {
+        this.mSomehting = something;
+        something.setPosition(this.mPosition);
     }
     
     //constructor 

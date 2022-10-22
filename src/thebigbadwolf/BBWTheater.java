@@ -93,6 +93,8 @@ public class BBWTheater extends Thread implements MouseListener {
         grandmaHouse.setPosition(new Point(100, 400));
         brickHouse.setPosition(new Point(100, 400));
         
+        wolf.putSomethingIn(wolfPants);
+        
         //scene 1
         System.out.println("====in front of pig3's brickhouse");
         this.addToScene(firstPig);
@@ -137,6 +139,9 @@ public class BBWTheater extends Thread implements MouseListener {
         this.addToScene(tree);
         this.addToScene(wolf);
         this.changeBgTo(forest);
+        firstPig.setToDefaultImage();
+        secondPig.setToDefaultImage();
+        thirdPig.setToDefaultImage();
         wolf.setPosition(new Point(600, 400));
         tree.setPosition(new Point(500, 350));
         firstPig.setPosition(new Point(300, 400));
@@ -217,6 +222,8 @@ public class BBWTheater extends Thread implements MouseListener {
         this.addToScene(firstPig);
         this.addToScene(secondPig);
         this.addToScene(thirdPig);
+        this.addToScene(bag);
+        this.addToScene(popcorn);
         this.changeBgTo(brickHouse);
         thirdPig.setPosition(new Point(600, 400));
         this.waitForNextButton();
@@ -229,7 +236,8 @@ public class BBWTheater extends Thread implements MouseListener {
         this.waitForNextButton();
         firstPig.say("the wolf! he’s got her!");
         this.waitForNextButton();
-        thirdPig.put("popcorn", "bag");
+        thirdPig.put(popcorn, bag);
+        thirdPig.putSomethingIn(bag);
         this.waitForNextButton();
         thirdPig.run(grandmaHouse);
         this.waitForNextButton();
@@ -258,10 +266,11 @@ public class BBWTheater extends Thread implements MouseListener {
         wolf.say("open the door and let me in!");
         this.waitForNextButton();
         this.addToScene(thirdPig);
+        this.addToScene(bag);
+        this.addToScene(popcorn);
         thirdPig.sneak(grandmaHouse);
         this.waitForNextButton();
-        thirdPig.put("unpopped popcorns", "wolf's pants");
-        thirdPig.put("charcoal", "wolf's pants");
+        thirdPig.put(popcorn, wolfPants);
         this.waitForNextButton();
         wolf.jumpOut();
         this.waitForNextButton();
