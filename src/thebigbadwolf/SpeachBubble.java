@@ -50,66 +50,59 @@ public class SpeachBubble extends BBWUI{
         }
     }
     
-    
-    //methods
-    @Override
-    public void draw(Graphics2D g2) {
-        System.out.println("width: " + mLeftBubbleImage.getWidth(null));
+    private int getAnchorX() {
         int width = mMidBubbleImage.getWidth(null);
-        int height = mMidBubbleImage.getHeight(null) / 2;
         int offsetX = -width * this.mScript.length() / 2;
         int bubbleOffsetX = 0;
         if (this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX < 0) {
             bubbleOffsetX = -this.mPosition.x +
                 mLeftBubbleImage.getWidth(null) - offsetX;
         }
-        if (this.mPosition.x + width * this.mScript.length() + offsetX > 
-            800) {
+        if (this.mPosition.x + width * this.mScript.length() + offsetX  + 
+            mRightBubbleImage.getWidth(null) > BBWTheater.SCREEN_WIDTH) {
             bubbleOffsetX = -this.mPosition.x -
-                width * this.mScript.length() - offsetX + 800;
+                width * this.mScript.length() - offsetX -
+                mRightBubbleImage.getWidth(null) + BBWTheater.SCREEN_WIDTH;
         }
+        return this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX + 
+            bubbleOffsetX;
+    }
+    private int getAnchorY() {
+        int height = mMidBubbleImage.getHeight(null) / 2;
+        return this.mPosition.y - height;
+    }
+    //methods
+    @Override
+    public void draw(Graphics2D g2) {
+        int width = mMidBubbleImage.getWidth(null);
+        int height = mMidBubbleImage.getHeight(null) / 2;
         g2.drawImage(mLeftBubbleImage,
-            this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX + 
-                bubbleOffsetX,
-            this.mPosition.y - height, null);
+            this.getAnchorX(), this.getAnchorY(), null);
         
         int i = 0;
         for (; i < this.mScript.length() + 1; i++) {
             g2.drawImage(mMidBubbleImage,
-                this.mPosition.x + width * i + offsetX + bubbleOffsetX,
-                this.mPosition.y - height, null);
+                this.getAnchorX() + width * i + mLeftBubbleImage.getWidth(null),
+                this.getAnchorY(), null);
         }
         g2.drawImage(mRightBubbleImage,
-                this.mPosition.x + width * i + offsetX + bubbleOffsetX,
-                this.mPosition.y - height, null);
+            this.getAnchorX() + width * i + mLeftBubbleImage.getWidth(null),
+            this.getAnchorY(), null);
         
         g2.drawImage(mBubblePointer,
             this.mPosition.x, this.mPosition.y + height, null);
         
         g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
         g2.setFont(BBWCanvas.FONT_DESCRIPTION);
-        g2.drawString(this.mScript, this.mPosition.x + offsetX + bubbleOffsetX,
+        g2.drawString(this.mScript,
+            this.getAnchorX() + mLeftBubbleImage.getWidth(null),
             this.mPosition.y + BBWCanvas.FONT_DESCRIPTION.getSize() / 2);
     }
     
     public Rectangle getRectangle() {
-        int width = mMidBubbleImage.getWidth(null);
-        int height = mMidBubbleImage.getHeight(null) / 2;
-        int offsetX = -width * this.mScript.length() / 2;
-        int bubbleOffsetX = 0;
-        if (this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX < 0) {
-            bubbleOffsetX = -this.mPosition.x +
-                mLeftBubbleImage.getWidth(null) - offsetX;
-        }
-        if (this.mPosition.x + width * this.mScript.length() + offsetX > 
-            800) {
-            bubbleOffsetX = -this.mPosition.x -
-                width * this.mScript.length() - offsetX + 800;
-        }
-        int x = this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX + 
-            bubbleOffsetX;
-        int y = this.mPosition.y - height;
-        int rectWidth = width * this.mScript.length();
+        int x = this.getAnchorX();
+        int y = this.getAnchorY();
+        int rectWidth = mMidBubbleImage.getWidth(null) * this.mScript.length();
         int rectHeight = mMidBubbleImage.getHeight(null);
         return new Rectangle(x, y, rectWidth, rectHeight);
     }
