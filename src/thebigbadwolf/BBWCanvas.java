@@ -17,7 +17,7 @@ public class BBWCanvas extends JPanel {
     public static final int DESCRIPTION_ALIGNMENT_X = 200;
     public static final int DESCRIPTION_ALIGNMENT_Y = 470;
     
-    public static final int MAX_CHAR_IN_LINE = 30;
+    public static final int MAX_CHAR_IN_LINE = 28;
     
     // field
     private BBWTheater mTheater = null;
@@ -26,6 +26,8 @@ public class BBWCanvas extends JPanel {
     public void setBackground(Image bg) {
         this.mBackground = bg;
     }
+    
+    private DescriptionPanel mDescriptionPanel = null;
     
     private ArrayList<String> mDescriptions = null;
     public void setDescription(String description) {
@@ -50,6 +52,8 @@ public class BBWCanvas extends JPanel {
         this.mTheater = theater;
         this.mSpeachBubbles = new ArrayList<>();
         this.mDescriptions = new ArrayList<>();
+        this.mDescriptionPanel = new DescriptionPanel(DESCRIPTION_ALIGNMENT_X,
+            DESCRIPTION_ALIGNMENT_Y - FONT_DESCRIPTION.getSize());
     }
     
     //method
@@ -79,15 +83,18 @@ public class BBWCanvas extends JPanel {
         }
     }
     private void drawDescription(Graphics2D g2) {
-        for (int i = 0; i < this.mDescriptions.size(); i++) {
-            String description = this.mDescriptions.get(i);
-            if (description != null) {
-                g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
-                g2.setFont(BBWCanvas.FONT_DESCRIPTION);
-                g2.drawString(description,
-                    BBWCanvas.DESCRIPTION_ALIGNMENT_X,
-                    BBWCanvas.DESCRIPTION_ALIGNMENT_Y + 
-                        BBWCanvas.FONT_DESCRIPTION.getSize() * i);
+        if (this.mDescriptions.size() > 0) {
+            this.mDescriptionPanel.draw(g2);
+            for (int i = 0; i < this.mDescriptions.size(); i++) {
+                String description = this.mDescriptions.get(i);
+                if (description != null) {
+                    g2.setColor(BBWCanvas.COLOR_DESCRIPTION);
+                    g2.setFont(BBWCanvas.FONT_DESCRIPTION);
+                    g2.drawString(description,
+                        BBWCanvas.DESCRIPTION_ALIGNMENT_X,
+                        BBWCanvas.DESCRIPTION_ALIGNMENT_Y + 
+                            BBWCanvas.FONT_DESCRIPTION.getSize() * i);
+                }
             }
         }
     }
