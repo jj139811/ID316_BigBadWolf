@@ -14,7 +14,7 @@ public class BBWCanvas extends JPanel {
     public static final Font FONT_DESCRIPTION =
         new Font("monospaced", Font.PLAIN, 24);
     public static final int DESCRIPTION_ALIGNMENT_X = 200;
-    public static final int DESCRIPTION_ALIGNMENT_Y = 500;
+    public static final int DESCRIPTION_ALIGNMENT_Y = 470;
     
     public static final int MAX_CHAR_IN_LINE = 30;
     
