@@ -27,6 +27,9 @@ public class BBWTheater extends Thread implements MouseListener {
     //fields
     private JFrame mFrame = null;
     private BBWCanvas mBBWCanvas = null;
+    
+    private Image mOpenningBg = null;
+    private Image mEndingBg = null;
     //skip to Nth page 
     private int mSkipCount = 0;
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
@@ -56,6 +59,14 @@ public class BBWTheater extends Thread implements MouseListener {
         
         this.mBBWCanvas.repaint();
         
+        try {
+            this.mOpenningBg = ImageIO.read(new File(
+                "src/thebigbadwolf/resources/bg/openning.png"));
+            this.mEndingBg = ImageIO.read(new File(
+                "src/thebigbadwolf/resources/bg/ending.png"));
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     private void waitForNextButton() {
@@ -70,6 +81,7 @@ public class BBWTheater extends Thread implements MouseListener {
     
     @Override
     public void run() {
+        this.mBBWCanvas.setBackground(this.mOpenningBg);
         // initiallize
         Pig firstPig = new Pig("adam");
         Pig secondPig = new Pig("brian");
@@ -94,6 +106,8 @@ public class BBWTheater extends Thread implements MouseListener {
         brickHouse.setPosition(new Point(100, 400));
         
         wolf.putSomethingIn(wolfPants);
+        
+        this.waitForNextButton();
         
         //scene 1
         System.out.println("====in front of pig3's brickhouse");
@@ -307,7 +321,10 @@ public class BBWTheater extends Thread implements MouseListener {
         firstPig.say("who's afraid of that big bad wolf? ");
         secondPig.say("who's afraid of that big bad wolf? ");
         this.waitForNextButton();
-
+        
+        this.mBBWCanvas.setBackground(mEndingBg);
+        this.clearScene();
+        this.waitForNextButton();
         System.out.println("====the end");
     }
     
