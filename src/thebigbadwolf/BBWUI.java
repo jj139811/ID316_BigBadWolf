@@ -9,6 +9,9 @@ public abstract class BBWUI {
     public void setPosition(int x, int y) {
         this.mPosition = new Point(x, y);
     }
+    public Point getPosition() {
+        return this.mPosition;
+    }
     
     //constructor
     protected BBWUI(int x, int y) {

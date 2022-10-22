@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -98,8 +99,20 @@ public class BBWCanvas extends JPanel {
     
     // public method
     public void addSpeachBubble(String script, int x, int y) {
-        this.mSpeachBubbles.add(
-            new SpeachBubble(script, x, y));
+        SpeachBubble newBubble = new SpeachBubble(script, x, y);
+        
+        //Check overlapping
+        Rectangle newRect = newBubble.getRectangle();
+        for (SpeachBubble bubble: this.mSpeachBubbles) {
+            Rectangle curRect = bubble.getRectangle();
+            if (newRect.intersects(curRect)) {
+                newBubble.setPosition(newBubble.getPosition().x,
+                    bubble.getPosition().y +
+                        (newRect.height + curRect.height) / 2);
+                newRect = newBubble.getRectangle();
+            }
+        }
+        this.mSpeachBubbles.add(newBubble);
     }
     public void clearSpeachBubbles() {
         this.mSpeachBubbles.clear();

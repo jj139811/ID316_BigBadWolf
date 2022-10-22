@@ -2,6 +2,7 @@ package thebigbadwolf;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -89,5 +90,27 @@ public class SpeachBubble extends BBWUI{
         g2.setFont(BBWCanvas.FONT_DESCRIPTION);
         g2.drawString(this.mScript, this.mPosition.x + offsetX + bubbleOffsetX,
             this.mPosition.y + BBWCanvas.FONT_DESCRIPTION.getSize() / 2);
+    }
+    
+    public Rectangle getRectangle() {
+        int width = mMidBubbleImage.getWidth(null);
+        int height = mMidBubbleImage.getHeight(null) / 2;
+        int offsetX = -width * this.mScript.length() / 2;
+        int bubbleOffsetX = 0;
+        if (this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX < 0) {
+            bubbleOffsetX = -this.mPosition.x +
+                mLeftBubbleImage.getWidth(null) - offsetX;
+        }
+        if (this.mPosition.x + width * this.mScript.length() + offsetX > 
+            800) {
+            bubbleOffsetX = -this.mPosition.x -
+                width * this.mScript.length() - offsetX + 800;
+        }
+        int x = this.mPosition.x - mLeftBubbleImage.getWidth(null) + offsetX + 
+            bubbleOffsetX;
+        int y = this.mPosition.y - height;
+        int rectWidth = width * this.mScript.length();
+        int rectHeight = mMidBubbleImage.getHeight(null);
+        return new Rectangle(x, y, rectWidth, rectHeight);
     }
 }
