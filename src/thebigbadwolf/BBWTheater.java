@@ -141,7 +141,7 @@ public class BBWTheater extends Thread implements MouseListener {
         this.waitForNextButton();
         thirdPig.say("beware, the big bad wolf is lurking there.");
         this.waitForNextButton();
-        secondPig.say("we’ll go with you and protect you.");
+        secondPig.say("we'll go with you and protect you.");
         this.waitForNextButton();
         
         //scene 2
