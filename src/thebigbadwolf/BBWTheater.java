@@ -37,7 +37,7 @@ public class BBWTheater extends Thread implements MouseListener {
         return this.mPlayObjectsInCurScene;
     }
     
-    public BBWTheater() {
+    private BBWTheater() {
         //initiallize
         this.mFrame = new JFrame("Big Bad Wolf");
         this.mFrame.setSize(BBWTheater.SCREEN_WIDTH, BBWTheater.SCREEN_HEIGHT);
