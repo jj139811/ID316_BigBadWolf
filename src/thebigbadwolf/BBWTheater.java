@@ -335,7 +335,7 @@ public class BBWTheater extends Thread implements MouseListener {
     }
     
     public void showDescription(String script) {
-        this.mBBWCanvas.setDescription(script);
+        this.mBBWCanvas.addDescription(script);
         System.out.println(script);
     }
     public void clearDescription() {

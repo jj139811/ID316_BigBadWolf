@@ -30,7 +30,7 @@ public class BBWCanvas extends JPanel {
     private DescriptionPanel mDescriptionPanel = null;
     
     private ArrayList<String> mDescriptions = null;
-    public void setDescription(String description) {
+    public void addDescription(String description) {
         StringBuffer descriptionRemained = new StringBuffer(description);
         while (descriptionRemained.length() > BBWCanvas.MAX_CHAR_IN_LINE) {
             this.mDescriptions.add(
