@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class PlayObject {
-    //field
+    // fields
     private String mName = null;
     public String getName() { 
         return this.mName;
@@ -16,6 +16,9 @@ public abstract class PlayObject {
     private Place mCurPlace = null;
     public Place getCurPlace() {
         return this.mCurPlace;
+    }
+    public void setCurPlace(Place place) {
+        this.mCurPlace = place;
     }
     
     private Point mPosition = null;
@@ -64,7 +67,7 @@ public abstract class PlayObject {
         something.setPosition(this.mPosition);
     }
     
-    //constructor 
+    // protected constructor 
     protected PlayObject(String name) {
         this.mName = name;
         this.mDefaultImage = this.callImage();
@@ -74,16 +77,19 @@ public abstract class PlayObject {
         this.setPosition(new Point(0, 0));
     }
     
+    // abstract method
     protected abstract Image callImage();
+    
+    // method
     protected Image loadImage(String fileName) {
         try {
             return ImageIO.read(
                 new File("src/thebigbadwolf/resources/" + fileName + ".png"));
-        }   catch (IOException e) {
+        } catch (IOException e) {
             try {
                 return ImageIO.read(
                     new File("src/thebigbadwolf/resources/sample.png"));
-            }   catch (IOException e2) { 
+            } catch (IOException e2) { 
                 System.out.println(e.getMessage());
                 return null;
             }

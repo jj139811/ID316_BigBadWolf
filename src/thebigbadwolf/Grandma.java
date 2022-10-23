@@ -3,12 +3,12 @@ package thebigbadwolf;
 import java.awt.Image;
 
 public class Grandma extends Human {
-    //constructor
+    // constructor
     protected Grandma(String name) {
         super(name);
     }
     
-    //method
+    // method
     public void hide(PlayObject po, Place where) {
         String hidingSubject;
         if (po.getName().equals(this.getName())) {
@@ -22,7 +22,8 @@ public class Grandma extends Human {
             where.getName() + ".";
         BBWTheater.getInstance().showDescription(s);
     }
-
+    
+    // overridden methods from Human
     @Override
     public void ceremony() {
         String s = this.getName() + " knits.";

@@ -3,12 +3,12 @@ package thebigbadwolf;
 import java.awt.Image;
 
 public class Frontyard extends Background {
-    //constructor
+    // constructor
     public Frontyard(String name) {
         super(name);
     }
     
-    //method
+    // overridden method from Background
     @Override
     protected Image loadBackgroundImage() {
         return this.loadImage("bg/bg_frontyard");

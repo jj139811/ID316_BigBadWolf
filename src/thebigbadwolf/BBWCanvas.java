@@ -14,12 +14,13 @@ public class BBWCanvas extends JPanel {
     public static final Color COLOR_DESCRIPTION = new Color(0, 0, 0);
     public static final Font FONT_DESCRIPTION =
         new Font("monospaced", Font.PLAIN, 24);
+    
     public static final int DESCRIPTION_ALIGNMENT_X = 200;
     public static final int DESCRIPTION_ALIGNMENT_Y = 470;
     
     public static final int MAX_CHAR_IN_LINE = 28;
     
-    // field
+    // fields
     private BBWTheater mTheater = null;
     
     private Image mBackground = null;
@@ -30,24 +31,10 @@ public class BBWCanvas extends JPanel {
     private DescriptionPanel mDescriptionPanel = null;
     
     private ArrayList<String> mDescriptions = null;
-    public void addDescription(String description) {
-        StringBuffer descriptionRemained = new StringBuffer(description);
-        while (descriptionRemained.length() > BBWCanvas.MAX_CHAR_IN_LINE) {
-            this.mDescriptions.add(
-                descriptionRemained.substring(0, BBWCanvas.MAX_CHAR_IN_LINE));
-            descriptionRemained = new StringBuffer(
-                descriptionRemained.substring(
-                    BBWCanvas.MAX_CHAR_IN_LINE, descriptionRemained.length()));
-        }
-        this.mDescriptions.add(descriptionRemained.toString());
-    }
-    public void clearDescription() {
-        this.mDescriptions.clear();
-    }
     
     private ArrayList<SpeachBubble> mSpeachBubbles = null;
     
-    //constructor
+    // constructor
     public BBWCanvas(BBWTheater theater) {
         this.mTheater = theater;
         this.mSpeachBubbles = new ArrayList<>();
@@ -56,11 +43,12 @@ public class BBWCanvas extends JPanel {
             DESCRIPTION_ALIGNMENT_Y - FONT_DESCRIPTION.getSize());
     }
     
-    //method
+    // methods
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        
         // draw
         this.drawBackground(g2);
         this.drawPlayObjects(g2);
@@ -91,8 +79,8 @@ public class BBWCanvas extends JPanel {
                     g2.setFont(BBWCanvas.FONT_DESCRIPTION);
                     g2.drawString(description,
                         BBWCanvas.DESCRIPTION_ALIGNMENT_X,
-                        BBWCanvas.DESCRIPTION_ALIGNMENT_Y + 
-                            BBWCanvas.FONT_DESCRIPTION.getSize() * i);
+                            BBWCanvas.DESCRIPTION_ALIGNMENT_Y + 
+                                BBWCanvas.FONT_DESCRIPTION.getSize() * i);
                 }
             }
         }
@@ -103,7 +91,22 @@ public class BBWCanvas extends JPanel {
         }
     }
     
-    // public method
+    // public methods
+    public void addDescription(String description) {
+        StringBuffer descriptionRemained = new StringBuffer(description);
+        while (descriptionRemained.length() > BBWCanvas.MAX_CHAR_IN_LINE) {
+            this.mDescriptions.add(
+                descriptionRemained.substring(0, BBWCanvas.MAX_CHAR_IN_LINE));
+            descriptionRemained = new StringBuffer(
+                descriptionRemained.substring(
+                    BBWCanvas.MAX_CHAR_IN_LINE, descriptionRemained.length()));
+        }
+        this.mDescriptions.add(descriptionRemained.toString());
+    }
+    public void clearDescription() {
+        this.mDescriptions.clear();
+    }
+    
     public void addSpeachBubble(String script, int x, int y) {
         SpeachBubble newBubble = new SpeachBubble(script, x, y);
         

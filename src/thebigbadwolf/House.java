@@ -1,7 +1,7 @@
 package thebigbadwolf;
 
 public abstract class House extends Background {
-    //constructor
+    // constructor
     public House(String name) {
         super(name);
     }

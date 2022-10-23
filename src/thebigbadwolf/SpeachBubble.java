@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 public class SpeachBubble extends BBWUI{
     // constant
     private static final int SCRIPT_OFFSET_Y = -4;
+    
     // static fields
     private static Image mLeftBubbleImage = null;
     private static Image mMidBubbleImage = null;
@@ -19,7 +20,7 @@ public class SpeachBubble extends BBWUI{
     // fields
     private String mScript = null;
     
-    // constructor
+    // constructors
     public SpeachBubble(String script) {
         super(0, 0);
         initialize(script);
@@ -28,6 +29,8 @@ public class SpeachBubble extends BBWUI{
         super(x, y);
         initialize(script);
     }
+    
+    // private methods
     private void initialize(String script) {
         this.mScript = script;
         try {
@@ -73,7 +76,17 @@ public class SpeachBubble extends BBWUI{
         int height = mMidBubbleImage.getHeight(null) / 2;
         return this.mPosition.y - height;
     }
-    //methods
+    
+    // public method
+    public Rectangle getRectangle() {
+        int x = this.getAnchorX();
+        int y = this.getAnchorY();
+        int rectWidth = mMidBubbleImage.getWidth(null) * this.mScript.length();
+        int rectHeight = mMidBubbleImage.getHeight(null);
+        return new Rectangle(x, y, rectWidth, rectHeight);
+    }
+    
+    // overridden method from BBWUI
     @Override
     public void draw(Graphics2D g2) {
         int width = mMidBubbleImage.getWidth(null);
@@ -100,13 +113,5 @@ public class SpeachBubble extends BBWUI{
             this.getAnchorX() + mLeftBubbleImage.getWidth(null),
             this.mPosition.y +
             BBWCanvas.FONT_DESCRIPTION.getSize() / 2 + SCRIPT_OFFSET_Y);
-    }
-    
-    public Rectangle getRectangle() {
-        int x = this.getAnchorX();
-        int y = this.getAnchorY();
-        int rectWidth = mMidBubbleImage.getWidth(null) * this.mScript.length();
-        int rectHeight = mMidBubbleImage.getHeight(null);
-        return new Rectangle(x, y, rectWidth, rectHeight);
     }
 }

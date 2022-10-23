@@ -6,17 +6,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class RedRidingHood extends Human {
-    //constructor
-    protected RedRidingHood(String name) {
+    // constructor
+    public RedRidingHood(String name) {
         super(name);
     }
     
-    //method
+    // overridden methods from Human
     @Override
     public void ceremony() {
+        this.setImage(this.mCeremonyImage);
+        
         String s = this.getName() + " plays piano.";
         BBWTheater.getInstance().showDescription(s);
-        this.setImage(this.mCeremonyImage);
     }
 
     @Override

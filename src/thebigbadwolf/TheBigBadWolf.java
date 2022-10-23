@@ -1,13 +1,16 @@
 package thebigbadwolf;
 
 public class TheBigBadWolf {
-    //field
+    // field
     private BBWTheater mTheater = null;
-    //constructor
+    
+    // constructor
     public TheBigBadWolf() {
         this.mTheater = BBWTheater.getInstance();
         this.mTheater.start();
     }
+    
+    // main method
     public static void main(String[] args) {
         new TheBigBadWolf();
     }

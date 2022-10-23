@@ -1,7 +1,7 @@
 package thebigbadwolf;
 
 public abstract class Human extends Protagonist {
-    //constructor
+    // constructor
     protected Human(String name) {
         super(name);
     }

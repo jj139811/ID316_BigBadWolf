@@ -7,17 +7,41 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Pig extends Protagonist {
-    //field
+    // field
     public static final Point houseBuildingPoint = new Point(600,300);
     
-    //constructor
+    // constructor
     protected Pig(String name) {
         super(name);
     }
     
-    //method
+    // methods
+    public void buildHouse() {
+        this.setImage(this.loadImage("pig3_buildhouse"));
+        this.setPosition(houseBuildingPoint);
+        
+        String s = this.getName() + " builds brickhouse.";
+        BBWTheater.getInstance().showDescription(s);
+    }
+    
+    public void sing() {
+       String s = this.getName() + " sings.";
+       BBWTheater.getInstance().showDescription(s);
+    }
+    
+    public void put(PlayObject what, PlayObject where) {
+        where.putSomethingIn(what);
+        
+        String s = this.getName() + " puts " + what.getName() + " into " +
+            where.getName() + ".";
+        BBWTheater.getInstance().showDescription(s);
+    }
+    
+    // overridden methods from Protagonist
     @Override
     public void ceremony() {
+        this.setImage(this.mCeremonyImage);
+        
         String s = this.getName();
         switch (this.getName()) {
             case "adam":
@@ -31,28 +55,8 @@ public class Pig extends Protagonist {
                 break;
         }
         BBWTheater.getInstance().showDescription(s);
-        this.setImage(this.mCeremonyImage);
     }
     
-    public void buildHouse() {
-        this.setImage(this.loadImage("pig3_buildhouse"));
-        String s = this.getName() + " builds brickhouse.";
-        BBWTheater.getInstance().showDescription(s);
-        this.setPosition(houseBuildingPoint);
-    }
-    
-    public void sing() {
-       String s = this.getName() + " sings.";
-       BBWTheater.getInstance().showDescription(s);
-    }
-    
-    public void put(PlayObject what, PlayObject where) {
-        where.putSomethingIn(what);
-        String s = this.getName() + " puts " + what.getName() + " into " +
-            where.getName() + ".";
-        BBWTheater.getInstance().showDescription(s);
-    }
-
     @Override
     protected Image callImage() {
         String fileName = null;
@@ -70,12 +74,11 @@ public class Pig extends Protagonist {
         try {
             return ImageIO.read(
                 new File("src/thebigbadwolf/resources/" + fileName + ".png"));
-        }   catch (IOException e) { 
+        } catch (IOException e) { 
             System.out.println(e.getMessage());
             return null;
         }
     }
-
     @Override
     protected Image loadCeremonyImage() {
         String fileName = null;

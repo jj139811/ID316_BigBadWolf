@@ -2,38 +2,34 @@ package thebigbadwolf;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 
 public class Place extends PlayObject {
-    //constant
+    // constants
     private static final int DISTANCE_BETWEEN_MEMBERS = 50;
     private static final int DISTANCE_BELOW_PLACE = 30;
     
-    //field
+    // field
     ArrayList<PlayObject> mMembers = new ArrayList<PlayObject>();
     public ArrayList<PlayObject> getmembers() {
         return this.mMembers;
     }  
     
-    //constructor
+    // constructor
     protected Place(String name) {
         super(name);
     }
     
-    //method
+    // methods
     public void add(PlayObject po) {
         this.mMembers.add(po);
+        po.setCurPlace(this);
         this.rearrangeMembers();
     }
     public void remove(PlayObject po) {
         this.mMembers.remove(po);
         this.rearrangeMembers();
     }
-
-    
     private void rearrangeMembers() {
         for (int i = 0; i < this.mMembers.size(); i++) {
             PlayObject po = this.mMembers.get(i);
@@ -43,6 +39,7 @@ public class Place extends PlayObject {
         }
     }
     
+    // overridden method from PlayObject
     @Override
     protected Image callImage() {
         String fileName = null;

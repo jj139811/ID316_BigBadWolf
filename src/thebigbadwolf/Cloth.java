@@ -3,11 +3,12 @@ package thebigbadwolf;
 import java.awt.Image;
 
 public class Cloth extends PlayObject{
-    //constructor
+    // constructor
     public Cloth(String name) {
         super(name);
     }   
-
+    
+    // overridden method from PlayObject
     @Override
     protected Image callImage() {
         String fileName = "";

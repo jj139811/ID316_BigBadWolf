@@ -20,25 +20,26 @@ public class BBWTheater extends Thread implements MouseListener {
         return instance;
     }
     
-    //constants
+    // constants
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
     
-    //fields
+    // fields
     private JFrame mFrame = null;
     private BBWCanvas mBBWCanvas = null;
     
     private Image mOpenningBg = null;
     private Image mEndingBg = null;
-    //skip to Nth page 
+    // skip to Nth page 
     private int mSkipCount = 0;
     private ArrayList<PlayObject> mPlayObjectsInCurScene = null;
     public ArrayList<PlayObject> getPlayObjectsInCurScene() {
         return this.mPlayObjectsInCurScene;
     }
     
+    // private constructor
     private BBWTheater() {
-        //initiallize
+        // initiallize
         this.mFrame = new JFrame("Big Bad Wolf");
         this.mFrame.setSize(BBWTheater.SCREEN_WIDTH, BBWTheater.SCREEN_HEIGHT);
         this.mFrame.setVisible(true);
@@ -64,21 +65,12 @@ public class BBWTheater extends Thread implements MouseListener {
                 "src/thebigbadwolf/resources/bg/openning.png"));
             this.mEndingBg = ImageIO.read(new File(
                 "src/thebigbadwolf/resources/bg/ending.png"));
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
     
-    private void waitForNextButton() {
-        this.mSkipCount += 1;
-        this.mBBWCanvas.repaint();
-        while (this.mSkipCount > 0) {
-            Thread.yield();
-        }
-        this.mBBWCanvas.clearSpeachBubbles();
-        this.clearDescription();
-    }
-    
+    // overridden method from Thread
     @Override
     public void run() {
         this.mBBWCanvas.setBackground(this.mOpenningBg);
@@ -328,10 +320,24 @@ public class BBWTheater extends Thread implements MouseListener {
         System.out.println("====the end");
     }
     
+    private void waitForNextButton() {
+        this.mSkipCount += 1;
+        this.mBBWCanvas.repaint();
+        while (this.mSkipCount > 0) {
+            Thread.yield();
+        }
+        this.mBBWCanvas.clearSpeachBubbles();
+        this.clearDescription();
+    }
+    
+    // public methods
     public void say(PlayObject speaker, String script) {
         this.mBBWCanvas.addSpeachBubble(script,
             speaker.getPosition().x,
             speaker.getPosition().y - 100);
+    }
+    public void clearSpeechBubble() {
+        this.mBBWCanvas.clearSpeachBubbles();
     }
     
     public void showDescription(String script) {
@@ -352,10 +358,6 @@ public class BBWTheater extends Thread implements MouseListener {
         System.out.println("Background changed to " + background.getName());
     }
     
-    public void clearSpeechBubble() {
-        this.mBBWCanvas.clearSpeachBubbles();
-    }
-    
     public void addToScene(PlayObject po) {
         this.mPlayObjectsInCurScene.add(po);
     }
@@ -366,6 +368,7 @@ public class BBWTheater extends Thread implements MouseListener {
         this.mPlayObjectsInCurScene.clear();
     }
     
+    // overridden methods from MouseListener
     @Override
     public void mouseClicked(MouseEvent e) {
         this.mSkipCount -= 1;
